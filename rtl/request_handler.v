@@ -4,7 +4,7 @@
 module register_nbit #(
     parameter N_FLOORS;
 ) (
-    input clk
+    input clk,
     input reset,
     input [N_FLOORS-1] D,
     output reg [N_FLOORS-1] Q

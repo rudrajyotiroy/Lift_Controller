@@ -79,10 +79,22 @@ module tb();
         #100;
         SEND_REQUEST(6,STOP);
         #100;
+        $finish;
     end
 
     forever begin
         #5 clk = ~clk;
+    end
+
+    // Very basic checker
+    forever begin
+        @(negedge top_if.floor_sense);
+        $$display("Lift has left floor : %b", top_if.floor_sense);
+    end
+
+    forever begin
+        @(posedge top_if.floor_sense);
+        $$display("Currently lift is at floor : %b", top_if.floor_sense);
     end
 
 endmodule
