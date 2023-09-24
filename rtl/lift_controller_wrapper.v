@@ -23,6 +23,7 @@ module lift_controller_wrapper #(parameter N_FLOORS) (
         .i_dn_req_queue(int_dn_req_queue),
         .i_flr_req_queue(int_flr_req_queue),
         .i_flr_pos(top_if.floor_sense),
+        .i_door_open(top_if.door_open),
         .o_direction(top_if.direction),
         .o_motion(top_if.motion),
         .o_up_clr(int_up_req_clr),
@@ -53,7 +54,7 @@ module lift_controller_wrapper #(parameter N_FLOORS) (
         .reset(top_if.reset),
         .edge_in({has_rqst_at_stopped_flr,not_moving}),
         .force_open(top_if.force_open),
-        .door_open(top_if.door_rqst)
+        .door_open(top_if.door_open)
     )
 
     initial begin

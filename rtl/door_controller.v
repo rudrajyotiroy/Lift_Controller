@@ -14,33 +14,46 @@ module door_controller #(
 );
 
 reg counter_active;
+reg [EDGE_INPUTS-1:0] counter_active_async;
 reg [31:0] up_counter;
 
-// When any 1 bit (signal) has positive edge
-always @(posedge edge_in) begin
-    counter_active = 1;
+assign door_open = |(counter_active_async) | counter_active;
+
+initial begin
+    counter_active = 1'b0;
 end
+
+// When any 1 bit (signal) has positive edge
+generate
+    genvar i;
+    for(i = 0; i < EDGE_INPUTS; i = i + 1) begin :u1
+        initial begin
+            counter_active_async[i] = 1'b0;
+        end
+        always @(posedge edge_in[i]) begin
+            counter_active_async[i] = 1'b1;
+        end
+    end
+endgenerate
     
 always @(posedge clk) begin
     if(reset) begin
         up_counter = 32'd0;
-        counter_active = 0;
+        counter_active = 1'b0;
     end
     else if(force_open) begin
         up_counter = 32'd0;
-        counter_active = 1;
+        counter_active = 1'b1;
     end
-    else if(counter_active) begin
+    if(door_open) begin
         up_counter = up_counter + 32'd1;
     end
-end
-
-always begin
     if(up_counter == DOOR_OPEN_CYCLES) begin
-        counter_active = 0;
+        up_counter = 32'd0;
+        counter_active = 1'b0;
+        counter_active_async = {EDGE_INPUTS{1'b0}};
     end
 end
-assign door_open = counter_active;
 
 endmodule
 

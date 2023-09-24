@@ -2,20 +2,20 @@
 `define REQUEST_HANDLER
 
 module register_nbit #(
-    parameter N_FLOORS;
+    parameter N_FLOORS
 ) (
     input clk,
     input reset,
-    input [N_FLOORS-1] D,
-    output reg [N_FLOORS-1] Q
+    input [N_FLOORS-1:0] D,
+    output reg [N_FLOORS-1:0] Q
 );
     always @(posedge clk or posedge reset)
-        Q = reset ? D : 0;
+        Q = reset ? {N_FLOORS{1'b0}} : D;
 endmodule
 
 // Combinational circuit with logic to update request registers
 module load_data #(
-    parameter N_FLOORS;
+    parameter N_FLOORS
 ) (
     input [N_FLOORS-1:0] load,
     input [N_FLOORS-1:0] floor,
@@ -23,16 +23,16 @@ module load_data #(
     input flr_reset,
     output [N_FLOORS-1:0] reg_out
 );
-    wire [N_FLOORS-1] floor_reset_array;
-    wire [N_FLOORS-1] req_array_after_reset;
+    wire [N_FLOORS-1:0] floor_reset_array;
+    wire [N_FLOORS-1:0] req_array_after_reset;
 
-    assign floor_reset_array = ~({N_FLOORS{flr_reset}} & reg_in) ;
+    assign floor_reset_array = ~({N_FLOORS{flr_reset}} & floor) ;
     assign req_array_after_reset = reg_in & floor_reset_array ;
-    assign reg_out = req_array_after_reset & load;
+    assign reg_out = req_array_after_reset | load;
 endmodule // load_data
 
 module request_handler #(
-    parameter N_FLOORS;
+    parameter N_FLOORS
 ) (
     input clk,
     input reset,
@@ -43,9 +43,9 @@ module request_handler #(
     input i_up_clr,
     input i_dn_clr,
     input i_flr_clr,
-    output o_up_req_queue,
-    output o_dn_req_queue,
-    output o_flr_req_queue
+    output [N_FLOORS-1:0] o_up_req_queue,
+    output [N_FLOORS-1:0] o_dn_req_queue,
+    output [N_FLOORS-1:0] o_flr_req_queue
 );
     wire [N_FLOORS-1:0] int_up_rqst;
     wire [N_FLOORS-1:0] int_dn_rqst;
