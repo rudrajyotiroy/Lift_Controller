@@ -1,5 +1,9 @@
 `ifndef LIFT_CONTROLLER_WRAPPER
 `define LIFT_CONTROLLER_WRAPPER
+`include "lift_controller_if.sv"
+`include "request_handler.v"
+`include "door_controller.v"
+`include "main_alu_block.v"
 
 module lift_controller_wrapper #(parameter N_FLOORS) (
     lift_controller_if top_if
