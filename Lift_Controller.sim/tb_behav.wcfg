@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="\$unit_lift_controller_wrapper_sv " />
+            <top_module name="glbl" />
+            <top_module name="tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="35.542963 us"></ZoomEndTime>
+      <Cursor1Time time="2.970549 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="169"></NameColumnWidth>
+      <ValueColumnWidth column_width="85"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="38" />
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/up_rqst" type="array">
+      <obj_property name="ElementShortName">up_rqst[11:0]</obj_property>
+      <obj_property name="ObjectShortName">up_rqst[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/dn_rqst" type="array">
+      <obj_property name="ElementShortName">dn_rqst[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dn_rqst[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/flr_rqst" type="array">
+      <obj_property name="ElementShortName">flr_rqst[11:0]</obj_property>
+      <obj_property name="ObjectShortName">flr_rqst[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/force_open" type="logic">
+      <obj_property name="ElementShortName">force_open</obj_property>
+      <obj_property name="ObjectShortName">force_open</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/floor_sense" type="array">
+      <obj_property name="ElementShortName">floor_sense[11:0]</obj_property>
+      <obj_property name="ObjectShortName">floor_sense[11:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/direction" type="logic">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/motion" type="logic">
+      <obj_property name="ElementShortName">motion</obj_property>
+      <obj_property name="ObjectShortName">motion</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/top_if/door_open" type="logic">
+      <obj_property name="ElementShortName">door_open</obj_property>
+      <obj_property name="ObjectShortName">door_open</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/i_up_req_queue" type="array">
+      <obj_property name="ElementShortName">i_up_req_queue[11:0]</obj_property>
+      <obj_property name="ObjectShortName">i_up_req_queue[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/i_dn_req_queue" type="array">
+      <obj_property name="ElementShortName">i_dn_req_queue[11:0]</obj_property>
+      <obj_property name="ObjectShortName">i_dn_req_queue[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/i_flr_req_queue" type="array">
+      <obj_property name="ElementShortName">i_flr_req_queue[11:0]</obj_property>
+      <obj_property name="ObjectShortName">i_flr_req_queue[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/i_flr_pos" type="array">
+      <obj_property name="ElementShortName">i_flr_pos[11:0]</obj_property>
+      <obj_property name="ObjectShortName">i_flr_pos[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/i_door_open" type="logic">
+      <obj_property name="ElementShortName">i_door_open</obj_property>
+      <obj_property name="ObjectShortName">i_door_open</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/o_direction" type="logic">
+      <obj_property name="ElementShortName">o_direction</obj_property>
+      <obj_property name="ObjectShortName">o_direction</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/o_motion" type="logic">
+      <obj_property name="ElementShortName">o_motion</obj_property>
+      <obj_property name="ObjectShortName">o_motion</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/o_up_clr" type="logic">
+      <obj_property name="ElementShortName">o_up_clr</obj_property>
+      <obj_property name="ObjectShortName">o_up_clr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/o_dn_clr" type="logic">
+      <obj_property name="ElementShortName">o_dn_clr</obj_property>
+      <obj_property name="ObjectShortName">o_dn_clr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/o_flr_clr" type="logic">
+      <obj_property name="ElementShortName">o_flr_clr</obj_property>
+      <obj_property name="ObjectShortName">o_flr_clr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/o_has_rqst_at_stopped_flr" type="logic">
+      <obj_property name="ElementShortName">o_has_rqst_at_stopped_flr</obj_property>
+      <obj_property name="ObjectShortName">o_has_rqst_at_stopped_flr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/up_req_or_floor_req" type="array">
+      <obj_property name="ElementShortName">up_req_or_floor_req[11:0]</obj_property>
+      <obj_property name="ObjectShortName">up_req_or_floor_req[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/dn_req_or_floor_req" type="array">
+      <obj_property name="ElementShortName">dn_req_or_floor_req[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dn_req_or_floor_req[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/any_req" type="array">
+      <obj_property name="ElementShortName">any_req[11:0]</obj_property>
+      <obj_property name="ObjectShortName">any_req[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/curr_dir_req" type="array">
+      <obj_property name="ElementShortName">curr_dir_req[11:0]</obj_property>
+      <obj_property name="ObjectShortName">curr_dir_req[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/dn_all_flr_select" type="array">
+      <obj_property name="ElementShortName">dn_all_flr_select[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dn_all_flr_select[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/up_all_flr_select" type="array">
+      <obj_property name="ElementShortName">up_all_flr_select[11:0]</obj_property>
+      <obj_property name="ObjectShortName">up_all_flr_select[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/curr_dir_all_flr_select" type="array">
+      <obj_property name="ElementShortName">curr_dir_all_flr_select[11:0]</obj_property>
+      <obj_property name="ObjectShortName">curr_dir_all_flr_select[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/curr_dir_oth_flr_rqst_select" type="array">
+      <obj_property name="ElementShortName">curr_dir_oth_flr_rqst_select[11:0]</obj_property>
+      <obj_property name="ObjectShortName">curr_dir_oth_flr_rqst_select[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/w_any_rqst_at_curr_flr" type="logic">
+      <obj_property name="ElementShortName">w_any_rqst_at_curr_flr</obj_property>
+      <obj_property name="ObjectShortName">w_any_rqst_at_curr_flr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/x_curr_dir_has_rqst_at_oth_flr" type="logic">
+      <obj_property name="ElementShortName">x_curr_dir_has_rqst_at_oth_flr</obj_property>
+      <obj_property name="ObjectShortName">x_curr_dir_has_rqst_at_oth_flr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/y_at_any_flr" type="logic">
+      <obj_property name="ElementShortName">y_at_any_flr</obj_property>
+      <obj_property name="ObjectShortName">y_at_any_flr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/z_curr_dir_no_rqst_at_curr_flr" type="logic">
+      <obj_property name="ElementShortName">z_curr_dir_no_rqst_at_curr_flr</obj_property>
+      <obj_property name="ObjectShortName">z_curr_dir_no_rqst_at_curr_flr</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/change_dir" type="logic">
+      <obj_property name="ElementShortName">change_dir</obj_property>
+      <obj_property name="ObjectShortName">change_dir</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/direction" type="logic">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb/u_lift_ctrl/u_alu/door_closing_pulse" type="logic">
+      <obj_property name="ElementShortName">door_closing_pulse</obj_property>
+      <obj_property name="ObjectShortName">door_closing_pulse</obj_property>
+   </wvobject>
+</wave_config>

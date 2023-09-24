@@ -2,7 +2,7 @@
 `define MAIN_ALU_BLOCK
 
 module main_alu_block #(
-    parameter N_FLOORS
+    parameter N_FLOORS=12
 ) (
     input clk,
     input reset,

@@ -2,7 +2,7 @@
 `define REQUEST_HANDLER
 
 module register_nbit #(
-    parameter N_FLOORS
+    parameter N_FLOORS=12
 ) (
     input clk,
     input reset,
@@ -15,7 +15,7 @@ endmodule
 
 // Combinational circuit with logic to update request registers
 module load_data #(
-    parameter N_FLOORS
+    parameter N_FLOORS=12
 ) (
     input [N_FLOORS-1:0] load,
     input [N_FLOORS-1:0] floor,
@@ -32,7 +32,7 @@ module load_data #(
 endmodule // load_data
 
 module request_handler #(
-    parameter N_FLOORS
+    parameter N_FLOORS=12
 ) (
     input clk,
     input reset,

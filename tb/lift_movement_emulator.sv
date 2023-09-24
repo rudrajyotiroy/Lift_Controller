@@ -4,7 +4,7 @@
 // Direction is 1 up 0 dn
 // True floor state is <gnd>.....<top>
 module lift_movement_emulator #(
-    parameter N_FLOORS,
+    parameter N_FLOORS = 12,
     parameter T = 200,
     parameter T_FLR_CONTCT = 50
 ) (

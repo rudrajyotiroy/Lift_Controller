@@ -1,11 +1,11 @@
 `ifndef LIFT_CONTROLLER_WRAPPER
 `define LIFT_CONTROLLER_WRAPPER
-`include "rtl/lift_controller_if.sv"
-`include "rtl/request_handler.v"
-`include "rtl/door_controller.v"
-`include "rtl/main_alu_block.v"
+`include "lift_controller_if.sv"
+`include "request_handler.v"
+`include "door_controller.v"
+`include "main_alu_block.v"
 
-module lift_controller_wrapper #(parameter N_FLOORS) (
+module lift_controller_wrapper #(parameter N_FLOORS=12) (
     lift_controller_if top_if
 );
     wire [N_FLOORS-1:0] int_up_req_queue;

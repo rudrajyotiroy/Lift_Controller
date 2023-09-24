@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  --include "../../../../rtl" \
+"../../../../rtl/lift_controller_wrapper.sv" \
+"../../../../tb/lift_movement_emulator.sv" \
+"../../../../tb/tb_top.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

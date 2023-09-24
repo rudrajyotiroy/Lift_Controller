@@ -1,7 +1,7 @@
 `ifndef TB_TOP
 `define TB_TOP
-`include "rtl/lift_controller_wrapper.v"
-`include "tb/lift_movement_emulator.sv"
+`include "../rtl/lift_controller_wrapper.sv"
+`include "lift_movement_emulator.sv"
 
 typedef enum { UP, DN, STOP, NULL } lift_request;
 
@@ -87,7 +87,7 @@ module tb();
     endtask //SEND_REQUEST
 
     initial begin
-        $vcdpluson;
+//        $vcdpluson;
         reset = 1'b1;
         SEND_REQUEST(1,NULL);
         top_if.force_open = 1'b0;

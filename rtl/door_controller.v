@@ -2,7 +2,7 @@
 `define DOOR_CONTROLLER
 
 module door_controller #(
-    parameter N_FLOORS,
+    parameter N_FLOORS = 12,
     parameter DOOR_OPEN_CYCLES = 200,
     parameter EDGE_INPUTS = 2
 ) (
