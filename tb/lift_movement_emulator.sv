@@ -11,7 +11,6 @@ module lift_movement_emulator #(
     input clk,
     input direction,
     input motion,
-    input door_open,
     output logic [N_FLOORS-1:0] floor_sense
 );
 

@@ -1,7 +1,7 @@
 `ifndef LIFT_CONTROLLER_INTERFACE
 `define LIFT_CONTROLLER_INTERFACE
 
-interface lift_controller_if # (parameter N_FLOORS)(logic clk, logic reset);
+interface lift_controller_if # (parameter N_FLOORS=12)(input logic clk, input logic reset);
     //Request buttons on floors to go up or down
     logic [N_FLOORS-1:0] up_rqst;
     logic [N_FLOORS-1:0] dn_rqst;

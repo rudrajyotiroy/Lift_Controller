@@ -59,7 +59,7 @@ module lift_controller_wrapper #(parameter N_FLOORS) (
         .edge_in({has_rqst_at_stopped_flr,not_moving}),
         .force_open(top_if.force_open),
         .door_open(top_if.door_open)
-    )
+    );
 
     initial begin
         $display("Inside top module instantiation");

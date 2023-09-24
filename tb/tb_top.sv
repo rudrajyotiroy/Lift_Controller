@@ -154,4 +154,4 @@ module tb();
 
 endmodule
 
-`endif TB_TOP
+`endif

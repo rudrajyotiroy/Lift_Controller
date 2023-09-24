@@ -37,7 +37,7 @@ module main_alu_block #(
     assign up_req_or_floor_req = i_up_req_queue | i_flr_req_queue;
     assign dn_req_or_floor_req = i_dn_req_queue | i_flr_req_queue;
     assign any_req = up_req_or_floor_req | dn_req_or_floor_req;
-    assign curr_dir_req = direction ? up_req_or_floor_req | dn_req_or_floor_req;
+    assign curr_dir_req = direction ? up_req_or_floor_req : dn_req_or_floor_req;
     assign dn_all_flr_select = i_flr_pos - 1'b1;
     assign up_all_flr_select = ~(i_flr_pos | dn_all_flr_select);
     assign curr_dir_all_flr_select = direction ? up_all_flr_select : dn_all_flr_select;
@@ -83,4 +83,4 @@ module main_alu_block #(
 
 endmodule
 
-`endif MAIN_ALU_BLOCK
+`endif
