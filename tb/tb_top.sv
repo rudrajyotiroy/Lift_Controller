@@ -1,7 +1,7 @@
 `ifndef TB_TOP
 `define TB_TOP
-`include "../rtl/lift_controller_wrapper.v"
-`include "lift_movement_emulator.sv"
+`include "rtl/lift_controller_wrapper.v"
+`include "tb/lift_movement_emulator.sv"
 
 typedef enum { UP, DN, STOP, NULL } lift_request;
 
