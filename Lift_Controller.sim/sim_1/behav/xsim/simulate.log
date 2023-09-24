@@ -1,0 +1,86 @@
+Time resolution is 1 ps
+Inside top module instantiation
+Currently lift is at floor :           1
+Door opens
+Currently lift is at floor :           2
+Door opens
+Currently lift is at floor :           3
+Door opens
+Currently lift is at floor :           4
+Door opens
+Currently lift is at floor :           5
+Door opens
+Currently lift is at floor :           6
+Door opens
+Currently lift is at floor :           7
+Door opens
+Currently lift is at floor :           8
+Door opens
+Currently lift is at floor :           9
+Door opens
+Currently lift is at floor :          10
+Door opens
+Currently lift is at floor :          11
+Door opens
+Currently lift is at floor :          10
+Currently lift is at floor :           9
+Currently lift is at floor :           8
+Currently lift is at floor :           7
+Currently lift is at floor :           6
+Currently lift is at floor :           5
+Currently lift is at floor :           4
+Currently lift is at floor :           3
+Currently lift is at floor :           2
+Door opens
+Currently lift is at floor :           3
+Door opens
+Currently lift is at floor :           4
+Door opens
+Currently lift is at floor :           5
+Door opens
+Currently lift is at floor :           6
+Door opens
+Currently lift is at floor :           7
+Door opens
+Currently lift is at floor :           8
+Door opens
+Currently lift is at floor :           9
+Door opens
+Currently lift is at floor :           8
+Currently lift is at floor :           7
+Currently lift is at floor :           6
+Currently lift is at floor :           5
+Currently lift is at floor :           4
+Currently lift is at floor :           3
+Currently lift is at floor :           2
+Currently lift is at floor :           1
+Door opens
+Currently lift is at floor :           2
+Door opens
+Currently lift is at floor :           3
+Door opens
+Currently lift is at floor :           4
+Door opens
+Currently lift is at floor :           5
+Door opens
+Currently lift is at floor :           6
+Door opens
+Currently lift is at floor :           7
+Door opens
+Currently lift is at floor :           8
+Door opens
+Currently lift is at floor :           9
+Door opens
+Currently lift is at floor :          10
+Door opens
+Currently lift is at floor :           9
+Currently lift is at floor :           8
+Currently lift is at floor :           7
+Currently lift is at floor :           6
+Currently lift is at floor :           5
+Currently lift is at floor :           4
+Currently lift is at floor :           3
+Currently lift is at floor :           2
+Currently lift is at floor :           1
+Door opens
+$finish called at time : 59007 ns : File "C:/Users/rudra/OneDrive/Documents/Lift_Controller/tb/tb_top.sv" Line 120
