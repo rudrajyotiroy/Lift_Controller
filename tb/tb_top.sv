@@ -146,8 +146,10 @@ module tb();
             @(posedge top_if.door_open);
             $display("Door opens");
         end
+    end
+    initial begin
         forever begin
-            @(posedge top_if.door_open);
+            @(negedge top_if.door_open);
             $display("Door closes");
         end
     end
