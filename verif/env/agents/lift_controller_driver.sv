@@ -1,10 +1,6 @@
 `ifndef LIFT_CONTROLLER_DRIVER
 `define LIFT_CONTROLLER_DRIVER
 
-// Import UVM package
-`include "uvm_macros.svh"
-import uvm_pkg::*;
-
 virtual class ENCODER #(parameter N_FLOORS = 12);
     static function bit [N_FLOORS-1:0] DECIMAL_TO_ONE_HOT(input int decimal_input);
         bit [N_FLOORS-1:0] onehot_output;
