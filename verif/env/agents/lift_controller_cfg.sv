@@ -17,6 +17,16 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     rand int pref_floor_2;
     rand int pref_floor_3;
 
+    `uvm_object_utils_begin(lift_controller_cfg)
+        `uvm_field_int(req_type,UVM_ALL_ON)
+        `uvm_field_int(traffic,UVM_ALL_ON)
+        `uvm_field_int(floor,UVM_ALL_ON)
+        `uvm_field_int(delay,UVM_ALL_ON)
+        `uvm_field_int(pref_floor_1,UVM_ALL_ON)
+        `uvm_field_int(pref_floor_2,UVM_ALL_ON)
+        `uvm_field_int(pref_floor_3,UVM_ALL_ON)
+    `uvm_object_utils_end
+
 endclass
 
 `endif

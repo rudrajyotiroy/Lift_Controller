@@ -46,18 +46,24 @@ endclass
 // Define a driver class that extends uvm_driver
 class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
 
-    // Register the driver with the factory
-    `uvm_component_utils(lift_controller_driver)
+    lift_controller_cfg tr;
+    lift_controller_seq_item tr_to_sb;
 
     // Declare the virtual interface
     virtual lift_controller_if lift_controller_vif;
 
     // Declare the driver to scoreboard input port (Connects to scoreboard export in env)
     uvm_analysis_port #(lift_controller_seq_item) input_txn_port;
+    
+    // Register the driver with the factory
+    `uvm_component_utils(lift_controller_driver)
 
     // Constructor
     function new(string name = "lift_controller_driver", uvm_component parent = null);
         super.new(name, parent);
+        input_txn_port = new("input_txn_port", this);
+        tr = new();
+        tr_to_sb = new();
     endfunction
 
     // Build phase: Get the virtual interface
@@ -68,13 +74,10 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
         end else begin
             `uvm_info(get_full_name(),$sformatf("Virtual interface obtained and connected to UVM Driver"),UVM_LOW);
         end
-        input_txn_port = new("input_txn_port", this);
     endfunction
 
     // Run phase: Main task for driving transactions
     virtual task run_phase(uvm_phase phase);
-        lift_controller_cfg tr;
-        lift_controller_seq_item tr_to_sb;
         phase.raise_objection(this);
 
         // Main loop to fetch and drive transactions
@@ -85,6 +88,7 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             `uvm_info(get_full_name(),$sformatf("Transaction item received from sequencer, driving to DUT"),UVM_LOW);
 
             // Drive the transaction to the DUT without waiting for next transaction time
+            // Force_open to be driven in sequence
             fork
                 drive_transfer(tr.floor, tr.req_type);
                 sb_transfer(tr.floor, tr.req_type);
