@@ -45,15 +45,15 @@ class lift_controller_scoreboard extends uvm_scoreboard;
             fork
                 begin
                     in_fifo.get(in_txn);
-                    input_txn_array[in_txn.id] = in_txn;
-                    in_q.push_back(in_txn.id);
+                    // input_txn_array[in_txn.id] = in_txn;
+                    // in_q.push_back(in_txn.id);
                     `uvm_info(get_full_name(), $sformatf("input transaction received (button press) in scoreboard"), UVM_LOW);
                     in_txn.print();
                 end
                 begin
                     out_fifo.get(out_txn);
-                    output_txn_array[out_txn.id] = out_txn;
-                    out_q.push_back(out_txn.id);
+                    // output_txn_array[out_txn.id] = out_txn;
+                    // out_q.push_back(out_txn.id);
                     `uvm_info(get_full_name(), $sformatf("output transaction received (lift door event) in scoreboard"), UVM_LOW);
                     out_txn.print();
                 end

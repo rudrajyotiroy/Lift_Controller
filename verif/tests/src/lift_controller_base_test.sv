@@ -21,7 +21,7 @@ class lift_controller_base_test extends uvm_test;
 
     task run_phase(uvm_phase phase);
         phase.raise_objection(this);
-            seq.start(env.lift_controller_agent.sequencer);
+            seq.start(env.agent.sequencer);
         phase.drop_objection(this);
     endtask : run_phase
    

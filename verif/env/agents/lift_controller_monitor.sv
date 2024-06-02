@@ -15,9 +15,9 @@ class lift_controller_monitor extends uvm_monitor;
   
     // Constructor
     function new(string name, uvm_component parent);
-      super.new(name, parent);
-      tr_mon = new();
-      output_txn_port = new("output_txn_port", this);
+        super.new(name, parent);
+        tr_mon = new();
+        output_txn_port = new("output_txn_port", this);
     endfunction : new
 
     // Build phase: Get the virtual interface
@@ -32,14 +32,19 @@ class lift_controller_monitor extends uvm_monitor;
 
     // Run phase: Main task for driving transactions
     virtual task run_phase(uvm_phase phase);
+        lift_direction curr_dir;
+        door_state curr_door;
+
         super.run_phase(phase);
         wait(!lift_controller_vif.reset);
         `uvm_info(get_full_name(),$sformatf("UVM_MONITOR : Ready to detect lift state"),UVM_LOW);
         forever begin
             @(lift_controller_vif.door_open);
-            tr_mon.door <= lift_controller_vif.door_open;
-            tr_mon.dir <= lift_controller_vif.direction;
-            tr_mon.floor <= lift_controller_vif.floor;
+            $cast(curr_dir,lift_controller_vif.direction);
+            $cast(curr_door,lift_controller_vif.door_open);
+            tr_mon.door <= curr_door;
+            tr_mon.dir <= curr_dir;
+            tr_mon.floor <= (ENCODER #(`NUM_FLOORS)::ONE_HOT_TO_DECIMAL(lift_controller_vif.floor_sense));
             // tr_mon.time <= $time;
             output_txn_port.write(tr_mon);
             // Print enumerated datatype name (ref: https://verificationguide.com/systemverilog/systemverilog-print-enum-as-string/)

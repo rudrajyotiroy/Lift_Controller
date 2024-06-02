@@ -2,7 +2,7 @@
 `define LIFT_CONTROLLER_SEQ_ITEM
 
 // Used in monitor only
-typedef enum {DIR_UP, DIR_DN} lift_direction;
+typedef enum {DIR_DN, DIR_UP} lift_direction;
 typedef enum {DOOR_CLOSED, DOOR_OPEN} door_state; 
 // Job of assertion to check whether lift is stopped when door is open
 
@@ -25,6 +25,14 @@ class lift_controller_seq_item #(parameter N_FLOORS = 12) extends uvm_sequence_i
         `uvm_field_int(floor,UVM_ALL_ON)
         // `uvm_field_int(timestamp,UVM_ALL_ON)
     `uvm_object_utils_end
+
+    function new(string name = "lift_controller_seq_item");
+        super.new(name);
+    endfunction
+
+    function void post_randomize();
+    endfunction  
+
 endclass
 
 `endif

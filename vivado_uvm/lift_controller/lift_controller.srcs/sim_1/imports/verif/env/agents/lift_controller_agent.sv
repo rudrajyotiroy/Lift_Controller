@@ -12,7 +12,7 @@ class lift_controller_agent extends uvm_agent;
     `uvm_component_utils(lift_controller_agent)
 
     // Constructor
-    function new (string name, uvm_component parent);
+    function new (string name = "lift_controller_agent", uvm_component parent);
         super.new(name, parent);
     endfunction : new
 

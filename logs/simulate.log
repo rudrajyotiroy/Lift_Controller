@@ -1,0 +1,814 @@
+Time resolution is 1 ps
+UVM_INFO /proj/xbuilds/SWIP/9999.0_0805_2155/installs/lin64/Vivado/2022.1/data/system_verilog/uvm_1.2/xlnx_uvm_package.sv(18601) @ 0: reporter [UVM/RELNOTES] 
+      (Specify +UVM_NO_RELNOTES to turn off this notice)
+  with `UVM_OBJECT_DO_NOT_NEED_CONSTRUCTOR undefined.
+
+  You are using a version of the UVM library that has been compiled
+  with `UVM_NO_DEPRECATED undefined.
+
+  You are using a version of the UVM library that has been compiled
+
+  ***********       IMPORTANT RELEASE NOTES         ************
+----------------------------------------------------------------
+(C) 2013-2014 NVIDIA Corporation
+(C) 2011-2013 Cypress Semiconductor Corp.
+(C) 2006-2014 Synopsys, Inc.
+(C) 2007-2014 Cadence Design Systems, Inc.
+(C) 2007-2014 Mentor Graphics Corporation
+
+
+----------------------------------------------------------------
+
+Inside top module instantiation
+UVM_INFO @ 0: reporter [RNTST] Running test lift_controller_base_test...
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(69) @ 0: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Virtual interface obtained and connected to UVM Driver
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(29) @ 0: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] Virtual interface obtained and connected to UVM Monitor
+UVM_INFO /proj/xbuilds/SWIP/9999.0_0805_2155/installs/lin64/Vivado/2022.1/data/system_verilog/uvm_1.2/xlnx_uvm_package.sv(20867) @ 0: reporter [UVM/COMP/NAMECHECK] This implementation of the component name checks requires DPI to be enabled
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(16) @ 0: uvm_test_top.env.agent.sequencer@@seq [lift_controller_base_seq] Inside pre_body
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(22) @ 0: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Entering main test
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 0: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 0: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 0: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 0: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h2        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 0: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h2        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(40) @ 5000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Ready to detect lift state
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 401000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           0 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 401000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 660000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 660000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 660000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 660000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h2        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 660000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h2        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 990000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 990000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 990000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 990000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h1      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 991000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           0 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 991000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 1116000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 1116000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 1116000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 1116000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'ha        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 1116000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'ha        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 1391000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           0 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 1391000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h0      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 1442000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 1442000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 1442000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 1442000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h6        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 1442000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h6        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 1695000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 1695000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 1695000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 1695000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 1695000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 1793000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           0 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 1793000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 2089000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 2089000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 2089000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 2089000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 2089000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 2193000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           2 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 2193000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h2      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 2595000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           2 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 2595000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h2        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 2777000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 2777000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 2777000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 2777000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h5        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 2777000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h5        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 2995000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           3 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 2995000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h3      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 3126000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 3126000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 3126000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 3126000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 3126000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h0        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 3397000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           3 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 3397000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h3        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 3643000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 3643000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 3643000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 3643000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'hb        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 3643000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'hb        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 3797000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           4 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 3797000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h4      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 4199000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           4 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 4199000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h4        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 4599000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           5 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 4599000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h5      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 4623000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 4623000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 4623000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 4623000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h8      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 5001000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           5 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 5001000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h5        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 5401000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           6 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 5401000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h6      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 5492000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 5492000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 5492000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 5492000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h6      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 5493000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           6 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 5493000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h6        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 5893000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           6 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 5893000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h6      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 5932000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 5932000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 5932000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 5932000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h7      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 6205000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           6 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 6205000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h6        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 6413000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 6413000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 6413000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 6413000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h1        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 6413000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h1        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 6605000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           7 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 6605000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h7      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 6756000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 6756000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 6756000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 6756000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h2      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 7007000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           7 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 7007000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h7        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 7302000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 7302000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 7302000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 7302000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h8      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 7407000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           8 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 7407000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h8      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 7720000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 7720000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 7720000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 7720000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h1        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 7720000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h1        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 7809000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           8 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 7809000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h8        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 8116000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 8116000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 8116000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 8116000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 8116000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 8209000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           9 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 8209000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h9      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 8611000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           9 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 8611000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 8999000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 8999000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 8999000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 8999000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h3        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 8999000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h3        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 9011000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor          10 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 9011000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'ha      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 9413000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor          10 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 9413000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'ha        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 9813000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor          11 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 9813000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'hb      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(24) @ 9920000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Send request traffic and add delay
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(80) @ 9920000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item received from sequencer, driving to DUT
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_driver.sv(89) @ 9920000: uvm_test_top.env.agent.driver [uvm_test_top.env.agent.driver] Transaction item driven to DUT and ScoreBoard, waiting for next item
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 9920000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(50) @ 9920000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction received (button press) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @429       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 10215000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor          11 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 10215000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'hb        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 10615000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor          12 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 10615000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_UP   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'hc      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 11021000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor          12 in direction DIR_UP
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 11021000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_UP     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'hc        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 11421000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor          11 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 11421000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'hb      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 11823000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor          11 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 11823000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'hb        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 12223000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor          10 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 12223000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'ha      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 12625000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor          10 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 12625000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'ha        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 13025000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           9 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 13025000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h9      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 13427000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           9 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 13427000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h9        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 13827000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           8 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 13827000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h8      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 14229000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           8 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 14229000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h8        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 14629000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           7 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 14629000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h7      
+-------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 15031000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_CLOSED at floor           7 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 15031000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+---------------------------------------------------------------------
+Name                      Type                      Size  Value      
+---------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579       
+  dir                     lift_direction            32    DIR_DN     
+  door                    door_state                32    DOOR_CLOSED
+  floor                   integral                  32    'h7        
+---------------------------------------------------------------------
+UVM_INFO ../../../../lift_controller.srcs/sim_1/imports/verif/env/agents/lift_controller_monitor.sv(51) @ 15431000: uvm_test_top.env.agent.monitor [uvm_test_top.env.agent.monitor] UVM_MONITOR : Lift door state : DOOR_OPEN at floor           6 in direction DIR_DN
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(57) @ 15431000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction received (lift door event) in scoreboard
+-------------------------------------------------------------------
+Name                      Type                      Size  Value    
+-------------------------------------------------------------------
+lift_controller_seq_item  lift_controller_seq_item  -     @579     
+  dir                     lift_direction            32    DIR_DN   
+  door                    door_state                32    DOOR_OPEN
+  floor                   integral                  32    'h6      
+-------------------------------------------------------------------
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(29) @ 15741000: uvm_test_top.env.agent.sequencer@@seq [uvm_test_top.env.agent.sequencer.seq] UVM_SEQUENCE : Exiting main test
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/sequence_lib/src/lift_controller_base_seq.sv(33) @ 15741000: uvm_test_top.env.agent.sequencer@@seq [lift_controller_base_seq] Inside post_body
+UVM_INFO /proj/xbuilds/SWIP/9999.0_0805_2155/installs/lin64/Vivado/2022.1/data/system_verilog/uvm_1.2/xlnx_uvm_package.sv(19968) @ 15741000: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(68) @ 15741000: uvm_test_top.env.sb [uvm_test_top.env.sb] Starting check-phase, before start stats
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(69) @ 15741000: uvm_test_top.env.sb [uvm_test_top.env.sb] input transaction queue size = 0
+UVM_INFO C:/Users/rudra/OneDrive/Documents/Lift_Controller/vivado_uvm/lift_controller/lift_controller.srcs/sim_1/imports/verif/env/top/lift_controller_scoreboard.sv(70) @ 15741000: uvm_test_top.env.sb [uvm_test_top.env.sb] output transaction queue size = 0
+[7;32m-------------------------------------------------
+------ INFO : TEST CASE PASSED ------------------
+-----------------------------------------
+[0mUVM_INFO /proj/xbuilds/SWIP/9999.0_0805_2155/installs/lin64/Vivado/2022.1/data/system_verilog/uvm_1.2/xlnx_uvm_package.sv(13673) @ 15741000: reporter [UVM/REPORT/SERVER] [uvm_test_top.env.sb]    76
+[uvm_test_top.env.agent.sequencer.seq]    22
+[uvm_test_top.env.agent.monitor]    41
+[uvm_test_top.env.agent.driver]    41
+[lift_controller_base_seq]     2
+[UVM/RELNOTES]     1
+[UVM/COMP/NAMECHECK]     1
+[TEST_DONE]     1
+[RNTST]     1
+** Report counts by id
+UVM_FATAL :    0
+UVM_ERROR :    0
+UVM_WARNING :    0
+UVM_INFO :  186
+** Report counts by severity
+
+--- UVM Report Summary ---
+
+
+$finish called at time : 15741 ns : File "C:/Xilinx/Vivado/2021.2/data/system_verilog/uvm_1.2/xlnx_uvm_package.sv" Line 18699

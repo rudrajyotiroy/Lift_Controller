@@ -22,7 +22,6 @@ virtual class ENCODER #(parameter N_FLOORS = 12);
     endfunction
 
     // Static function for getting current floor ID
-    /* NOT REQUIRED ATM
     static function int ONE_HOT_TO_DECIMAL(input [N_FLOORS-1:0] onehot_input);
         int dec_output;
         int ctr;
@@ -36,7 +35,6 @@ virtual class ENCODER #(parameter N_FLOORS = 12);
         return dec_output;
         
     endfunction
-    */
 endclass
 
 // Define a driver class that extends uvm_driver
@@ -74,8 +72,6 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
 
     // Run phase: Main task for driving transactions
     virtual task run_phase(uvm_phase phase);
-        phase.raise_objection(this);
-
         // Main loop to fetch and drive transactions
         forever begin
             // Get the next transaction from the sequencer
@@ -96,8 +92,6 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             // Indicate that the item has been executed
             seq_item_port.item_done();
         end
-
-        phase.drop_objection(this);
     endtask
 
     virtual task drive_transfer(int floor, lift_request req_type);

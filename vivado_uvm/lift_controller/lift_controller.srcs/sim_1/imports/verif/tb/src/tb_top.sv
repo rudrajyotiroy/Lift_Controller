@@ -1,5 +1,7 @@
 `ifndef UVM_LIFT_CONTROLLER_TB_TOP
 `define UVM_LIFT_CONTROLLER_TB_TOP
+
+`timescale 1ns/1ps
 `include "uvm_macros.svh"
 
 // Include RTL files
@@ -52,8 +54,8 @@ module lift_controller_tb_top;
     /**********Set the Interface instance Using Configuration Database and run test***********/
 
     initial begin
-        uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*","intf",top_if);
-        run_test();
+        uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+        run_test("lift_controller_base_test");
     end
 
 endmodule

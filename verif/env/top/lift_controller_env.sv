@@ -15,7 +15,7 @@ class lift_controller_environment extends uvm_env;
 
     function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        agent = lift_controller_agent::type_id::create("lift_controller_agent", this);
+        agent = lift_controller_agent::type_id::create("agent", this);
         // ref_model = lift_controller_ref_model::type_id::create("ref_model", this);
         // coverage = lift_controller_coverage#(lift_controller_transaction)::type_id::create("coverage", this);
         sb = lift_controller_scoreboard::type_id::create("sb", this);
