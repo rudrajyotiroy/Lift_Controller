@@ -131,6 +131,8 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             tr_to_sb.dir = DIR_UP;  // Doesn't matter  
             input_txn_port.write(tr_to_sb);
 
+            #1;
+
             // Second txn
             tr_to_sb.door = DOOR_CLOSED;
             tr_to_sb.floor = floor;
@@ -145,6 +147,8 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             // tr_to_sb.time = $time;
             tr_to_sb.dir = DIR_DN;  // Doesn't matter  
             input_txn_port.write(tr_to_sb);
+
+            #1;
 
             // Second txn
             tr_to_sb.door = DOOR_CLOSED;
