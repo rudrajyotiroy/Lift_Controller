@@ -3,6 +3,6 @@
 
 `define MAX_REQUESTS 20
 `define NUM_FLOORS 12
-`define DRAIN_TIME 5000
+`define DRAIN_TIME 50000
 
 `endif

@@ -6,6 +6,7 @@
 
 // Include RTL files
 // `include "lift_controller_wrapper.sv"
+`include "lift_controller_assertions.sv"
 `include "lift_movement_emulator.sv"
 
 import uvm_pkg::*;
@@ -42,6 +43,8 @@ module lift_controller_tb_top;
     /********************* DUT (and Emulator) Instantation **********************************/
 
     lift_controller_wrapper #(N_FLOORS) u_lift_ctrl (top_if);
+    // lift_controller_assertion #(N_FLOORS) u_lift_ctrl_assertion (top_if);
+    bind lift_controller_wrapper lift_controller_assertion #(N_FLOORS) u_lift_ctrl_assertion(.lift_intf(top_if));
     lift_movement_emulator #(N_FLOORS) u_lift 
     (
         .clk(clk),

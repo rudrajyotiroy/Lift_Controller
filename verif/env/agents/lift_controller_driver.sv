@@ -73,6 +73,8 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
     // Run phase: Main task for driving transactions
     virtual task run_phase(uvm_phase phase);
         // Main loop to fetch and drive transactions
+        lift_controller_vif.force_open = 1'b0;
+        drive_transfer(0, NULL);
         forever begin
             // Get the next transaction from the sequencer
             seq_item_port.get_next_item(tr);
@@ -80,11 +82,10 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             `uvm_info(get_full_name(),$sformatf("Transaction item received from sequencer, driving to DUT"),UVM_LOW);
 
             // Drive the transaction to the DUT without waiting for next transaction time
-            // Force_open to be driven in sequence
             fork
                 drive_transfer(tr.floor, tr.req_type);
                 sb_transfer(tr.floor, tr.req_type);
-            join_none
+            join
 
             `uvm_info(get_full_name(),$sformatf("Transaction item driven to DUT and ScoreBoard, waiting for next item"),UVM_LOW);
 
@@ -130,7 +131,7 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             // tr_to_sb.time = $time;
             tr_to_sb.dir = DIR_UP;  // Doesn't matter  
             input_txn_port.write(tr_to_sb);
-
+            
             #1;
 
             // Second txn
@@ -147,7 +148,7 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             // tr_to_sb.time = $time;
             tr_to_sb.dir = DIR_DN;  // Doesn't matter  
             input_txn_port.write(tr_to_sb);
-
+            
             #1;
 
             // Second txn
