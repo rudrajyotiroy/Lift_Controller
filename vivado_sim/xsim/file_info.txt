@@ -1,0 +1,12 @@
+door_controller.v,verilog,xil_defaultlib,../../rtl/door_controller.v,incdir="../../verif/env/agents"
+main_alu_block.v,verilog,xil_defaultlib,../../rtl/main_alu_block.v,incdir="../../verif/env/agents"
+request_handler.v,verilog,xil_defaultlib,../../rtl/request_handler.v,incdir="../../verif/env/agents"
+lift_controller_agent_pkg.sv,systemverilog,xil_defaultlib,../../verif/env/agents/lift_controller_agent_pkg.sv,incdir="../../verif/env/agents"
+lift_controller_env_pkg.sv,systemverilog,xil_defaultlib,../../verif/env/top/lift_controller_env_pkg.sv,incdir="../../verif/env/agents"
+lift_controller_if.sv,systemverilog,xil_defaultlib,../../rtl/lift_controller_if.sv,incdir="../../verif/env/agents"
+lift_controller_seq_pkg.sv,systemverilog,xil_defaultlib,../../verif/sequence_lib/src/lift_controller_seq_pkg.sv,incdir="../../verif/env/agents"
+lift_controller_test_pkg.sv,systemverilog,xil_defaultlib,../../verif/tests/src/lift_controller_test_pkg.sv,incdir="../../verif/env/agents"
+lift_controller_wrapper.sv,systemverilog,xil_defaultlib,../../rtl/lift_controller_wrapper.sv,incdir="../../verif/env/agents"
+lift_movement_emulator.sv,systemverilog,xil_defaultlib,../../verif/tb/src/lift_movement_emulator.sv,incdir="../../verif/env/agents"
+tb_top.sv,systemverilog,xil_defaultlib,../../verif/tb/src/tb_top.sv,incdir="../../verif/env/agents"
+glbl.v,Verilog,xil_defaultlib,glbl.v

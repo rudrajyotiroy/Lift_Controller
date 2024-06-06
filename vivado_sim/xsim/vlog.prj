@@ -1,0 +1,18 @@
+verilog xil_defaultlib --include "../../verif/env/agents" \
+"../../rtl/door_controller.v" \
+"../../rtl/main_alu_block.v" \
+"../../rtl/request_handler.v" \
+
+sv xil_defaultlib --include "../../verif/env/agents" \
+"../../verif/env/agents/lift_controller_agent_pkg.sv" \
+"../../verif/env/top/lift_controller_env_pkg.sv" \
+"../../rtl/lift_controller_if.sv" \
+"../../verif/sequence_lib/src/lift_controller_seq_pkg.sv" \
+"../../verif/tests/src/lift_controller_test_pkg.sv" \
+"../../rtl/lift_controller_wrapper.sv" \
+"../../verif/tb/src/lift_movement_emulator.sv" \
+"../../verif/tb/src/tb_top.sv" \
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
