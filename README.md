@@ -8,9 +8,9 @@ This repository contains a project for a single elevator controller implemented 
 - **log/**: Log files generated during simulation and synthesis.
 - **rtl/**: Design Files
     - **lift_controller_if.sv**: interface for interacting with design
-    - **request_handler.sv**: sequential module responsible for storing all requests from people on different floors as well as people on the lift, and selectively clearing them when lift stops at a particular floor
-    - **door_controller.sv**: Door opening and counter based closing sequential logic based on asynchronous pulse
-    - **main_alu_block.sv**: Combinational logic block responsible for direction, motion control and indirect door control
+    - **request_handler.v**: sequential module responsible for storing all requests from people on different floors as well as people on the lift, and selectively clearing them when lift stops at a particular floor
+    - **door_controller.v**: Door opening and counter based closing sequential logic based on asynchronous pulse
+    - **main_alu_block.v**: Combinational logic block responsible for direction, motion control and indirect door control
     - **lift_controller_wrapper.sv**: Top design module for lift controller
 
 - **tb/**: Testbench files for basic non UVM simulation
