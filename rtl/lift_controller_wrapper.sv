@@ -6,7 +6,7 @@
 `include "main_alu_block.v"
 
 module lift_controller_wrapper #(parameter N_FLOORS=12) (
-    lift_controller_if top_if
+    lift_controller_if #(N_FLOORS) top_if
 );
     wire [N_FLOORS-1:0] int_up_req_queue;
     wire [N_FLOORS-1:0] int_dn_req_queue;

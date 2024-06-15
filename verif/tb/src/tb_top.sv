@@ -9,6 +9,9 @@
 `include "lift_controller_assertions.sv"
 `include "lift_movement_emulator.sv"
 
+// Define to use stable single-lift version in TB
+`define MONO_LIFT
+
 import uvm_pkg::*;
 module lift_controller_tb_top;
     import lift_controller_test_pkg::*;
@@ -18,6 +21,9 @@ module lift_controller_tb_top;
     logic clk;
     logic reset;
     parameter N_FLOORS = 12;
+    `ifndef MONO_LIFT
+    parameter N_LIFTS = 10;
+    `endif
 
     //clock generation
     
@@ -36,15 +42,14 @@ module lift_controller_tb_top;
         #5 reset = 0;
     end
     
-    //creatinng instance of interface, inorder to connect DUT and testcase
+    //creating instance of interface, inorder to connect DUT and testcase
     
+    `ifdef MONO_LIFT
     lift_controller_if #(N_FLOORS) top_if(clk, reset);
 
     /********************* DUT (and Emulator) Instantation **********************************/
 
     lift_controller_wrapper #(N_FLOORS) u_lift_ctrl (top_if);
-    // lift_controller_assertion #(N_FLOORS) u_lift_ctrl_assertion (top_if);
-    bind lift_controller_wrapper lift_controller_assertion #(N_FLOORS) u_lift_ctrl_assertion(.lift_intf(top_if));
     lift_movement_emulator #(N_FLOORS) u_lift 
     (
         .clk(clk),
@@ -53,13 +58,39 @@ module lift_controller_tb_top;
         .floor_sense(top_if.floor_sense)
     );
 
+    `else
+
+    /********************* DUT and Emulator (Wrapped) Instantation **********************************/
+    multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if (clk, reset);
+    multi_lift_controller_wrapper #(N_FLOORS, N_LIFTS) u_lift (top_if);
+
+    `endif
+
+    /********************* Assertion Binding by Type **********************************/
+    bind lift_controller_wrapper lift_controller_assertion #(N_FLOORS) u_lift_ctrl_assertion(.lift_intf(top_if));
+
 
     /**********Set the Interface instance Using Configuration Database and run test***********/
 
     initial begin
-        uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+        `ifdef MONO_LIFT
+            uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+        `endif
         run_test("lift_controller_base_test");
     end
+
+    `ifndef MONO_LIFT
+    genvar c;
+    generate
+        for (c = 0; c < N_LIFTS; c = c + 1) begin
+            initial begin
+                // Set N_LIFTS number of different instances from RTL path
+                // Idea is N_LIFT sequencers, 1 driver, N_LIFT monitors (reuse) and 1 scoreboard
+                uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*",$sformatf("lift_controller_int_vif[%0d]",i),u_lift.int_if[c]);
+            end
+        end
+    endgenerate
+    `endif
 
 endmodule
 
