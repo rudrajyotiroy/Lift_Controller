@@ -58,7 +58,7 @@ For non-GUI simulation, please follow README.txt in vivado_sim directory
 
 Synopsis VCS support to be added later
 
-Current Status : Compile, Elaboration and Simulation is clean but assertion and scoreboard errors yet to be fixed
+Current Status : All assertions passing for base testcase, to run all testcases and add new assertions
 
 ## Contributing
 
