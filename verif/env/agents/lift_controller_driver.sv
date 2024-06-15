@@ -74,7 +74,8 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
     virtual task run_phase(uvm_phase phase);
         // Main loop to fetch and drive transactions
         lift_controller_vif.force_open = 1'b0;
-        drive_transfer(0, NULL);
+        drive_transfer(0, NULL); // Reset all request arrays
+        wait(!lift_controller_vif.reset);
         forever begin
             // Get the next transaction from the sequencer
             seq_item_port.get_next_item(tr);

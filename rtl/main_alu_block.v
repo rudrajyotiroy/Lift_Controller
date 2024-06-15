@@ -47,15 +47,15 @@ module main_alu_block #(
     assign y_at_any_flr = |(i_flr_pos);
     assign z_curr_dir_no_rqst_at_curr_flr = ~|(i_flr_pos & curr_dir_req);
     
-    assign o_motion = (x_curr_dir_has_rqst_at_oth_flr & z_curr_dir_no_rqst_at_curr_flr) | ~y_at_any_flr;
+    assign o_motion = (x_curr_dir_has_rqst_at_oth_flr & z_curr_dir_no_rqst_at_curr_flr) | ~y_at_any_flr; // Not at any floor, else curr dir has rqst at other floor but not this floor
     assign o_direction = direction;
 
-    assign change_dir = y_at_any_flr & ~x_curr_dir_has_rqst_at_oth_flr & z_curr_dir_no_rqst_at_curr_flr;
-    assign o_has_rqst_at_stopped_flr = ~o_motion & w_any_rqst_at_curr_flr;
+    assign change_dir = y_at_any_flr & (~x_curr_dir_has_rqst_at_oth_flr) & z_curr_dir_no_rqst_at_curr_flr; // At any floor, curr dir does not have rqst at curr or oth floor
+    assign o_has_rqst_at_stopped_flr = ~o_motion & ~z_curr_dir_no_rqst_at_curr_flr; //w_any_rqst_at_curr_flr;
 
-    assign o_flr_clr = change_dir | door_closing_pulse;
-    assign o_dn_clr = direction ? 1'b0 : o_flr_clr;
-    assign o_up_clr = direction ? o_flr_clr : 1'b0;
+    assign o_flr_clr = door_closing_pulse; // Only door closing pulse can clear any request
+    assign o_dn_clr = direction ? 1'b0 : door_closing_pulse;
+    assign o_up_clr = direction ? door_closing_pulse : 1'b0;
 
     initial begin
         direction = 1'b0;
@@ -75,8 +75,7 @@ module main_alu_block #(
         if(reset) door_closing_pulse = 1'b0;
         else begin
             door_closing_pulse = 1'b1;
-            repeat(4)
-                @(posedge clk);
+            @(posedge clk); // Reduced to 1-edge high
             door_closing_pulse = 1'b0;
         end
     end

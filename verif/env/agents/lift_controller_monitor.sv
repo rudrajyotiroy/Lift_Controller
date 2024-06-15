@@ -40,11 +40,12 @@ class lift_controller_monitor extends uvm_monitor;
         `uvm_info(get_full_name(),$sformatf("UVM_MONITOR : Ready to detect lift state"),UVM_LOW);
         forever begin
             @(lift_controller_vif.door_open);
+            @(negedge lift_controller_vif.clk); // Add out of cycle delay
             $cast(curr_dir,lift_controller_vif.direction);
             $cast(curr_door,lift_controller_vif.door_open);
-            tr_mon.door <= curr_door;
-            tr_mon.dir <= curr_dir;
-            tr_mon.floor <= (ENCODER #(`NUM_FLOORS)::ONE_HOT_TO_DECIMAL(lift_controller_vif.floor_sense));
+            tr_mon.door = curr_door;
+            tr_mon.dir = curr_dir;
+            tr_mon.floor = (ENCODER #(`NUM_FLOORS)::ONE_HOT_TO_DECIMAL(lift_controller_vif.floor_sense));
             // tr_mon.time <= $time;
             output_txn_port.write(tr_mon);
             // Print enumerated datatype name (ref: https://verificationguide.com/systemverilog/systemverilog-print-enum-as-string/)

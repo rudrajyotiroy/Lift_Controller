@@ -25,10 +25,10 @@ module lift_controller_assertion #(parameter N_FLOORS=12)
     assert property (motion_door_check)
     else `uvm_error("MOTION_DOOR_CHECK", "Motion check failed: Lift should have the door closed while in motion.");
 
-    // Assertion 3: Whenever lift direction changes, lift should be static
+    // Assertion 3: Whenever lift moves, direction should remain stable, non-overlapped implication is used
     property dir_motion_check();
         @(posedge lift_intf.clk)
-        $fell(lift_intf.direction) || $rose(lift_intf.direction) |-> (lift_intf.motion == 1'b0) | (lift_intf.motion == 1'b0);
+        (lift_intf.motion == 1'b1) |=> $stable(lift_intf.direction);
     endproperty
     assert property (dir_motion_check)
     else `uvm_error("DIR_MOTION_CHECK", "Direction Change Check Failed: Lift should be static when direction is changed.");

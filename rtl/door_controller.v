@@ -4,7 +4,7 @@
 module door_controller #(
     parameter N_FLOORS = 12,
     parameter DOOR_OPEN_CYCLES = 200,
-    parameter EDGE_INPUTS = 2
+    parameter EDGE_INPUTS = 1
 ) (
     input clk,
     input reset,
@@ -17,7 +17,7 @@ reg counter_active;
 reg [EDGE_INPUTS-1:0] counter_active_async;
 reg [31:0] up_counter;
 
-assign door_open = |(counter_active_async) | counter_active;
+assign door_open = |(counter_active_async) | counter_active; // Force open or posedge of ANY inputs
 
 initial begin
     counter_active = 1'b0;
@@ -31,7 +31,7 @@ generate
             counter_active_async[i] = 1'b0;
         end
         always @(posedge edge_in[i]) begin
-            counter_active_async[i] = 1'b1;
+            counter_active_async[i] = 1'b1; // Edge detector for any signal on input bus
         end
     end
 endgenerate
@@ -39,7 +39,7 @@ endgenerate
 always @(posedge clk) begin
     if(reset) begin
         up_counter = 32'd0;
-        counter_active = 1'b0;
+        counter_active = 1'b0; // For force_open only
     end
     else if(force_open) begin
         up_counter = 32'd0;

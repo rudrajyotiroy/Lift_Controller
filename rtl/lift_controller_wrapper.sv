@@ -56,7 +56,7 @@ module lift_controller_wrapper #(parameter N_FLOORS=12) (
     (
         .clk(top_if.clk),
         .reset(top_if.reset),
-        .edge_in({has_rqst_at_stopped_flr,not_moving}),
+        .edge_in({has_rqst_at_stopped_flr & not_moving}),
         .force_open(top_if.force_open),
         .door_open(top_if.door_open)
     );
