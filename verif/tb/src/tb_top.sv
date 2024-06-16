@@ -75,22 +75,11 @@ module lift_controller_tb_top;
     initial begin
         `ifdef MONO_LIFT
             uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+        `else
+            uvm_config_db#(virtual multi_lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
         `endif
         run_test("lift_controller_base_test");
     end
-
-    `ifndef MONO_LIFT
-    genvar c;
-    generate
-        for (c = 0; c < N_LIFTS; c = c + 1) begin
-            initial begin
-                // Set N_LIFTS number of different instances from RTL path
-                // Idea is N_LIFT sequencers, 1 driver, N_LIFT monitors (reuse) and 1 scoreboard
-                uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*",$sformatf("lift_controller_int_vif[%0d]",i),u_lift.int_if[c]);
-            end
-        end
-    endgenerate
-    `endif
 
 endmodule
 

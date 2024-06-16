@@ -11,7 +11,7 @@ interface multi_lift_controller_if #(parameter N_FLOORS=12, parameter N_LIFTS = 
     logic [N_LIFTS-1:0] force_open;
 
     //One-hot current position of lift (current floor if standing, 0 if in between two floors)
-    logic [N_FLOORS-1:0] floor_sense;
+    logic [N_FLOORS-1:0] floor_sense [N_LIFTS-1:0];
 
     //Current direction, door open state and motion
     logic [N_LIFTS-1:0] direction;

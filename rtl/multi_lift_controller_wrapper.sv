@@ -25,6 +25,15 @@ generate
             .motion(int_if[i].motion),
             .floor_sense(int_if[i].floor_sense)
         );
+        // Forward all ports that directly connect
+        // Distribute Input Ports
+        assign int_if[i].flr_rqst = top_if.flr_rqst[i];
+        assign int_if[i].floor_sense = top_if.floor_sense[i]; 
+        assign int_if[i].force_open = top_if.force_open[i];
+        // Aggregate Output Ports
+        assign top_if.door_open[i] = int_if[i].door_open;
+        assign top_if.motion[i] = int_if[i].motion;
+        assign top_if.direction[i] = int_if[i].direction;
     end
 endgenerate
 

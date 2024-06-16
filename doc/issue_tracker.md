@@ -1,2 +1,2 @@
 1. What if multiple lifts? But each lift has own individual controller that cannot be modified. Permitted to add additional logic but no change in existing SCAN-LOOK logic.
-2. What if someone wants to cancel a request?
+2. What if someone wants to cancel a request? Changed OR to XOR for disable request support. What changes in TB?

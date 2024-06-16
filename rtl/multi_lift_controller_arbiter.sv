@@ -6,14 +6,18 @@ module multi_lift_controller_arbiter #(parameter N_FLOORS=12, parameter N_LIFTS 
     lift_controller_if #(N_FLOORS) int_if [N_LIFTS-1:0]
 }
 
+wire [N_FLOORS-1:0] up_rqst_router [N_LIFTS-1:0]; // Arbitration crossbar (UP)
+wire [N_FLOORS-1:0] dn_rqst_router [N_LIFTS-1:0]; // Arbitration crossbar (DN)
+
 genvar i;
 generate
     for(i = 0; i < N_LIFTS; i = i + 1) begin
-        assign int_if[i].flr_rqst = top_if.flr_rqst[i]; // All floor requests directly fwd
+        assign int_if[i].up_rqst = top_if.up_rqst & up_rqst_router[i];
+        assign int_if[i].dn_rqst = top_if.dn_rqst & dn_rqst_router[i];
     end
 endgenerate
 
-// To HLS this module?
+
 
 endmodule
 

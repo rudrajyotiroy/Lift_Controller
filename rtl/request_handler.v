@@ -28,7 +28,7 @@ module load_data #(
 
     assign floor_reset_array = ~({N_FLOORS{flr_reset}} & floor) ;
     assign req_array_after_reset = reg_in & floor_reset_array ;
-    assign reg_out = req_array_after_reset | load;
+    assign reg_out = req_array_after_reset ^ load; // Add support for disabling previous requests
 endmodule // load_data
 
 module request_handler #(
