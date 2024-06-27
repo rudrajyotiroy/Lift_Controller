@@ -10,7 +10,6 @@
 `include "lift_movement_emulator.sv"
 
 // Define to use stable single-lift version in TB
-`define MONO_LIFT
 
 import uvm_pkg::*;
 module lift_controller_tb_top;

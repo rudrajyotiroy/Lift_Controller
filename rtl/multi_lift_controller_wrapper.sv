@@ -1,10 +1,11 @@
+`ifndef MONO_LIFT
 `ifndef MULTI_LIFT_CONTROLLER_WRAPPER
 `define MULTI_LIFT_CONTROLLER_WRAPPER
 
 `include "multi_lift_controller_if.sv"
 `include "lift_controller_wrapper.sv"
 `include "lift_movement_emulator.sv"
-`include "lift_controller_arbiter.sv"
+`include "multi_lift_controller_arbiter.sv"
 
 module multi_lift_controller_wrapper #(parameter N_FLOORS=12, parameter N_LIFTS = 10) (
     multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if
@@ -34,6 +35,7 @@ generate
         assign top_if.door_open[i] = int_if[i].door_open;
         assign top_if.motion[i] = int_if[i].motion;
         assign top_if.direction[i] = int_if[i].direction;
+        assign top.if.flr_rqst_status[i] = int_if[i].flr_rqst_status;
     end
 endgenerate
 
@@ -42,4 +44,5 @@ multi_lift_controller_arbiter #(N_FLOORS, N_LIFTS) u_arbiter (top_if, int_if);
 
 endmodule
 
+`endif
 `endif

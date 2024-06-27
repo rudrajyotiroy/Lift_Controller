@@ -1,10 +1,10 @@
 `ifndef MULTI_LIFT_CONTROLLER_ARBITER
 `define MULTI_LIFT_CONTROLLER_ARBITER
 
-module multi_lift_controller_arbiter #(parameter N_FLOORS=12, parameter N_LIFTS = 10) {
-    multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if,
-    lift_controller_if #(N_FLOORS) int_if [N_LIFTS-1:0]
-}
+module multi_lift_controller_arbiter #(parameter N_FLOORS=12, parameter N_LIFTS = 10) (
+    multi_lift_controller_if top_if,
+    lift_controller_if int_if [N_LIFTS-1:0]
+);
 
 wire [N_FLOORS-1:0] up_rqst_router [N_LIFTS-1:0]; // Arbitration crossbar (UP)
 wire [N_FLOORS-1:0] dn_rqst_router [N_LIFTS-1:0]; // Arbitration crossbar (DN)

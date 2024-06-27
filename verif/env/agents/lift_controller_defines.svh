@@ -5,4 +5,7 @@
 `define NUM_FLOORS 12
 `define DRAIN_TIME 50000
 
+`define MONO_LIFT
+`define DEBUG_INTERFACE
+
 `endif

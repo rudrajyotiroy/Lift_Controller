@@ -20,7 +20,7 @@ class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
 
     virtual task body();
         string s_traffic;
-        op_cond req_traffic = LIGHT;
+        op_cond req_traffic = MODERATE;
         if ($value$plusargs("TRAFFIC=%s", s_traffic)) begin
             if (s_traffic == "MODERATE") req_traffic = MODERATE;
             else if (s_traffic == "HEAVY") req_traffic = HEAVY;

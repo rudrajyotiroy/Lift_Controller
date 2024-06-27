@@ -6,7 +6,7 @@
 `include "main_alu_block.v"
 
 module lift_controller_wrapper #(parameter N_FLOORS=12) (
-    lift_controller_if #(N_FLOORS) top_if
+    lift_controller_if top_if
 );
     wire [N_FLOORS-1:0] int_up_req_queue;
     wire [N_FLOORS-1:0] int_dn_req_queue;
@@ -18,6 +18,13 @@ module lift_controller_wrapper #(parameter N_FLOORS=12) (
     wire not_moving;
 
     assign not_moving = ~top_if.motion;
+
+    //Exposed Status Lamps
+    `ifdef DEBUG_INTERFACE
+    assign top_if.up_rqst_status = int_up_req_queue;
+    assign top_if.dn_rqst_status = int_dn_req_queue;
+    assign top_if.flr_rqst_status = int_flr_req_queue;
+    `endif
 
     main_alu_block #(N_FLOORS) u_alu
     (
