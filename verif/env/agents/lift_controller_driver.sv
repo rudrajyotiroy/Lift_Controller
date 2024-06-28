@@ -26,7 +26,7 @@ virtual class ENCODER #(parameter N_FLOORS = 12);
         int dec_output;
         int ctr;
 
-        for (ctr = 1; ctr <= N_FLOORS; ctr = ctr + 1) begin
+        for (ctr = 0; ctr < N_FLOORS; ctr = ctr + 1) begin
             if(onehot_input[ctr] == 1'b1) begin
                 dec_output = ctr + 1;
             end

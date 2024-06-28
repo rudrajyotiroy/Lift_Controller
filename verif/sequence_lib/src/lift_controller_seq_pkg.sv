@@ -10,6 +10,7 @@ package lift_controller_seq_pkg;
     import lift_controller_env_pkg::*;
 
     `include "lift_controller_base_seq.sv"
+    `include "lift_traffic_sequence.sv"
 
 endpackage
 

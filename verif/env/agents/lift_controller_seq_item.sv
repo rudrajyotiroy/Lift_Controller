@@ -11,7 +11,7 @@ typedef enum {DOOR_CLOSED, DOOR_OPEN} door_state;
 // If stop request is placed inside lift, one input transaction, door_state OPEN, lift direction IGNORED
 // If up/down request is placed from a floor, two input transactions, first door_state OPEN, lift direction IGNORED
 // then door_state CLOSED, lift direction should match, both same timestamp
-// TODO: Write scoreboard strategy to check out-of-order transactions https://vlsiverify.com/uvm/uvm-scoreboard/#Out-of-order_scoreboard
+// Scoreboard to check out-of-order transactions https://vlsiverify.com/uvm/uvm-scoreboard/#Out-of-order_scoreboard
 
 class lift_controller_seq_item #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     lift_direction dir;

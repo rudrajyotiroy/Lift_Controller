@@ -2,10 +2,11 @@
 `define LIFT_CONTROLLER_BASE_SEQ
 
 class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
+
+    // Virtual interface
+    virtual lift_controller_if lift_controller_vif;
    
     `uvm_object_utils(lift_controller_base_seq)
-
-    lift_controller_cfg lift_config;
     uvm_phase phase;
 
     function new(string name = "lift_controller_base_seq");
@@ -13,39 +14,49 @@ class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
     endfunction
 
     task pre_body();
-        `uvm_info(get_type_name(), "Inside pre_body", UVM_LOW);
+        `uvm_info(get_type_name(), "Inside pre_body, raising objection", UVM_LOW);
         phase = get_starting_phase; // Retrieve phase information
         if (phase != null) phase.raise_objection(this);
+
+        if (!uvm_config_db#(virtual lift_controller_if)::get(null, "", "lift_controller_vif", lift_controller_vif)) begin
+            `uvm_fatal(get_full_name(),"Virtual interface not found in UVM Monitor")
+        end else begin
+            `uvm_info(get_full_name(),$sformatf("Virtual interface obtained and connected to UVM Monitor"),UVM_LOW);
+        end
     endtask
 
     virtual task body();
-        string s_traffic;
-        op_cond req_traffic = MODERATE;
-        if ($value$plusargs("TRAFFIC=%s", s_traffic)) begin
-            if (s_traffic == "MODERATE") req_traffic = MODERATE;
-            else if (s_traffic == "HEAVY") req_traffic = HEAVY;
-            else if (s_traffic == "LIGHT") req_traffic = LIGHT;
-            else if (s_traffic == "SCARCE") req_traffic = SCARCE;
-            else if (s_traffic == "CONVERGING") req_traffic = CONVERGING;
-            else if (s_traffic == "DIVERGING") req_traffic = DIVERGING;
-            else if (s_traffic == "PAIRED") req_traffic = PAIRED;
-            else if (s_traffic == "TWO_WAY_CONV") req_traffic = TWO_WAY_CONV;
-            else if (s_traffic == "TWO_WAY_DIV") req_traffic = TWO_WAY_DIV;
-            else if (s_traffic == "PAIRED_W_HOTSPOT") req_traffic = PAIRED_W_HOTSPOT;
-        end
-        `uvm_info(get_full_name(),$sformatf("UVM_SEQUENCE : Entering main test"),UVM_LOW);
-        for(int i=0;i<`MAX_REQUESTS;i++) begin
-            `uvm_info(get_full_name(),$sformatf("UVM_SEQUENCE : Send request traffic and add delay"),UVM_LOW);
-            `uvm_do_with(lift_config,{lift_config.traffic == req_traffic;})
-            #(lift_config.delay); // Delay
-        end
-        #(`DRAIN_TIME);
-        `uvm_info(get_full_name(),$sformatf("UVM_SEQUENCE : Exiting main test"),UVM_LOW);
+        wait(!lift_controller_vif.reset);
+        `uvm_info(get_full_name(),$sformatf("Entering main test"),UVM_LOW);
+
     endtask
 
     task post_body();
-        `uvm_info(get_type_name(), "Inside post_body", UVM_LOW);
+        #(`DRAIN_TIME);
+        `uvm_info(get_full_name(),$sformatf("Exiting main test, dropping objection"),UVM_LOW);
         if (phase != null) phase.drop_objection(this);
+    endtask
+
+    task wait_for_elevator(int desired_floor, lift_request req_type, int person_id);
+
+        if(req_type == DN) begin
+            `uvm_info(get_full_name(),$sformatf("Person %d, Waiting for elevator at floor %d, going DN", person_id, desired_floor),UVM_LOW);
+            wait((lift_controller_vif.direction == 1'b0) && (lift_controller_vif.floor_sense == (1'b1 << (desired_floor-1))));
+        end else if (req_type == UP) begin
+            `uvm_info(get_full_name(),$sformatf("Person %d, Waiting for elevator at floor %d, going UP", person_id, desired_floor),UVM_LOW);
+            wait((lift_controller_vif.direction == 1'b1) && (lift_controller_vif.floor_sense == (1'b1 << (desired_floor-1))));
+        end else if (req_type == STOP) begin
+            `uvm_info(get_full_name(),$sformatf("Person %d, Boarded elevator, waiting to reach floor %d", person_id, desired_floor),UVM_LOW);
+            wait(lift_controller_vif.floor_sense == (1'b1 << (desired_floor-1)));
+        end
+        `uvm_info(get_full_name(),$sformatf("Person %d, Waiting for door to open", person_id),UVM_LOW);
+        wait(lift_controller_vif.door_open == 1'b1);
+        if((req_type == DN) || (req_type == UP)) begin
+            `uvm_info(get_full_name(),$sformatf("Person %d, Boarding complete, time to choose a floor", person_id),UVM_LOW);
+        end else if (req_type == STOP) begin
+            `uvm_info(get_full_name(),$sformatf("Person %d, Deboarding complete", person_id),UVM_LOW);
+        end
+
     endtask
    
 endclass

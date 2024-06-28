@@ -21,6 +21,7 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     rand op_cond traffic;
     rand int floor;
     rand int delay;
+    randc byte person_id; 
 
     // For modelling specialized testcases
     rand int pref_floor_1;
@@ -32,6 +33,7 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
         `uvm_field_enum(op_cond, traffic, UVM_ALL_ON)
         `uvm_field_int(floor, UVM_ALL_ON)
         `uvm_field_int(delay, UVM_ALL_ON)
+        `uvm_field_int(person_id, UVM_ALL_ON)
         `uvm_field_int(pref_floor_1, UVM_ALL_ON)
         `uvm_field_int(pref_floor_2, UVM_ALL_ON)
         `uvm_field_int(pref_floor_3, UVM_ALL_ON)

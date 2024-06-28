@@ -16,7 +16,7 @@ class lift_controller_base_test extends uvm_test;
         super.build_phase(phase);
     
         env = lift_controller_environment::type_id::create("env", this);
-        seq = lift_controller_base_seq::type_id::create("seq", this);
+        seq = lift_traffic_sequence::type_id::create("seq", this);
     endfunction : build_phase
 
     task run_phase(uvm_phase phase);
