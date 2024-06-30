@@ -14,8 +14,6 @@ class lift_traffic_sequence extends lift_controller_base_seq;
     virtual task body();
         string s_traffic;
         op_cond req_traffic = MODERATE;
-        byte person_id;
-        int curr_floor;
 
         super.body();
 
@@ -37,31 +35,33 @@ class lift_traffic_sequence extends lift_controller_base_seq;
             
             // Person requests elevator from certain floor
             `uvm_do_with(lift_config,{lift_config.traffic == req_traffic; lift_config.req_type != STOP;})
-            person_id = lift_config.person_id;
-            curr_floor = lift_config.floor;
             fork
-                begin
-                    // Person waits for elevator to arrive at that floor and door open
-                    super.wait_for_elevator(lift_config.floor, lift_config.req_type, person_id);
-                    // Person gets in and selects appropriate destination floor in desired direction only
-                    if(lift_config.req_type == DN) begin
-                        `uvm_do_with(lift_config,{  lift_config.traffic == req_traffic;
-                        lift_config.req_type == STOP; 
-                        lift_config.person_id == person_id;
-                        lift_config.floor < curr_floor;}) 
-                    end else begin
-                        `uvm_do_with(lift_config,{  lift_config.traffic == req_traffic;
-                        lift_config.req_type == STOP; 
-                        lift_config.person_id == person_id;
-                        lift_config.floor > curr_floor;}) 
-                    end
-                    // Person waits inside elevator to reach that floor, and then deboards
-                    super.wait_for_elevator(lift_config.floor, lift_config.req_type, person_id);
-                end
-            // We do not want one person's waiting actions to prohibit any other person
+                single_person_behav(req_traffic, lift_config.person_id, lift_config.floor, lift_config.req_type);
+                // We do not want one person's waiting actions to prohibit any other person
             join_none
             #(lift_config.delay); // Delay between multiple people sending requests
         end
+    endtask
+
+    task single_person_behav(op_cond req_traffic, byte unsigned person_id, int curr_floor, lift_request req_type);
+        lift_controller_cfg curr_lift_config;
+
+        // Person waits for elevator to arrive at that floor and door open
+        super.wait_for_elevator(curr_floor, req_type, person_id);
+        // Person gets in and selects appropriate destination floor in desired direction only
+        if(req_type == DN) begin
+            `uvm_do_with(curr_lift_config,{  curr_lift_config.traffic == req_traffic;
+            curr_lift_config.req_type == STOP; 
+            curr_lift_config.person_id == person_id;
+            curr_lift_config.floor < curr_floor;}) 
+        end else begin
+            `uvm_do_with(curr_lift_config,{  curr_lift_config.traffic == req_traffic;
+            curr_lift_config.req_type == STOP; 
+            curr_lift_config.person_id == person_id;
+            curr_lift_config.floor > curr_floor;}) 
+        end
+        // Person waits inside elevator to reach that floor, and then deboards
+        super.wait_for_elevator(curr_lift_config.floor, curr_lift_config.req_type, person_id);
     endtask
 
 endclass

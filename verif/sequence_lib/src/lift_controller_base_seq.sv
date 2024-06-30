@@ -32,29 +32,42 @@ class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
     endtask
 
     task post_body();
-        #(`DRAIN_TIME);
+        fork
+            begin
+                wait(lift_controller_vif.up_rqst_status == 0);
+                `uvm_info(get_full_name(),$sformatf("All UP requests cleared"),UVM_LOW);
+                wait(lift_controller_vif.dn_rqst_status == 0);
+                `uvm_info(get_full_name(),$sformatf("All DN requests cleared"),UVM_LOW);
+                wait(lift_controller_vif.flr_rqst_status == 0);
+                `uvm_info(get_full_name(),$sformatf("All FLR requests cleared, exiting test gracefully"),UVM_LOW);
+            end
+            begin
+                #(`DRAIN_TIME);
+                `uvm_fatal(get_full_name(),$sformatf("Test is not proceeding, please verify")) 
+            end
+        join_any
         `uvm_info(get_full_name(),$sformatf("Exiting main test, dropping objection"),UVM_LOW);
         if (phase != null) phase.drop_objection(this);
     endtask
 
-    task wait_for_elevator(int desired_floor, lift_request req_type, int person_id);
+    task wait_for_elevator(int desired_floor, lift_request req_type, byte unsigned person_id);
 
         if(req_type == DN) begin
-            `uvm_info(get_full_name(),$sformatf("Person %d, Waiting for elevator at floor %d, going DN", person_id, desired_floor),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Person %0d, Waiting for elevator at floor %d, going DN", person_id, desired_floor),UVM_LOW);
             wait((lift_controller_vif.direction == 1'b0) && (lift_controller_vif.floor_sense == (1'b1 << (desired_floor-1))));
         end else if (req_type == UP) begin
-            `uvm_info(get_full_name(),$sformatf("Person %d, Waiting for elevator at floor %d, going UP", person_id, desired_floor),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Person %0d, Waiting for elevator at floor %d, going UP", person_id, desired_floor),UVM_LOW);
             wait((lift_controller_vif.direction == 1'b1) && (lift_controller_vif.floor_sense == (1'b1 << (desired_floor-1))));
         end else if (req_type == STOP) begin
-            `uvm_info(get_full_name(),$sformatf("Person %d, Boarded elevator, waiting to reach floor %d", person_id, desired_floor),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Person %0d, Boarded elevator, waiting to reach floor %d", person_id, desired_floor),UVM_LOW);
             wait(lift_controller_vif.floor_sense == (1'b1 << (desired_floor-1)));
         end
-        `uvm_info(get_full_name(),$sformatf("Person %d, Waiting for door to open", person_id),UVM_LOW);
+        `uvm_info(get_full_name(),$sformatf("Person %0d, Waiting for door to open", person_id),UVM_LOW);
         wait(lift_controller_vif.door_open == 1'b1);
         if((req_type == DN) || (req_type == UP)) begin
-            `uvm_info(get_full_name(),$sformatf("Person %d, Boarding complete, time to choose a floor", person_id),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Person %0d, Boarding complete, time to choose a floor", person_id),UVM_LOW);
         end else if (req_type == STOP) begin
-            `uvm_info(get_full_name(),$sformatf("Person %d, Deboarding complete", person_id),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Person %0d, Deboarding complete", person_id),UVM_LOW);
         end
 
     endtask

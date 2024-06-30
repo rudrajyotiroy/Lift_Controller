@@ -21,7 +21,7 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     rand op_cond traffic;
     rand int floor;
     rand int delay;
-    randc byte person_id; 
+    randc byte unsigned person_id; 
 
     // If a request is already present, the person shall not press button again, thereby nullifying request
     rand bit no_cancellation; 
