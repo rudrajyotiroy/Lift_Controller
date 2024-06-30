@@ -80,21 +80,46 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
             // Get the next transaction from the sequencer
             seq_item_port.get_next_item(tr);
 
-            `uvm_info(get_full_name(),$sformatf("Transaction item received from sequencer, driving to DUT"),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Transaction item received from sequencer"),UVM_LOW);
 
             // Drive the transaction to the DUT without waiting for next transaction time
-            fork
-                drive_transfer(tr.floor, tr.req_type);
-                sb_transfer(tr.floor, tr.req_type);
-            join
+            if((check_request_exists(tr.floor, tr.req_type) == 0) || (tr.no_cancellation == 0)) begin
+                fork
+                    drive_transfer(tr.floor, tr.req_type);
+                    sb_transfer(tr.floor, tr.req_type);
+                join
+            end
 
-            `uvm_info(get_full_name(),$sformatf("Transaction item driven to DUT and ScoreBoard, waiting for next item"),UVM_LOW);
+            `uvm_info(get_full_name(),$sformatf("Waiting for next item"),UVM_LOW);
 
             // Delay should be handled by sequence
             // Indicate that the item has been executed
             seq_item_port.item_done();
         end
     endtask
+
+    function bit check_request_exists(int floor, lift_request req_type);
+        if(req_type == UP) begin
+            if(lift_controller_vif.up_rqst_status & (ENCODER #(`NUM_FLOORS)::DECIMAL_TO_ONE_HOT(floor))) begin
+                `uvm_info(get_full_name(),$sformatf("UP Request already exists in queue, avoiding"),UVM_LOW);
+               return 1; 
+            end
+        end else if(req_type == DN) begin 
+            if(lift_controller_vif.dn_rqst_status & (ENCODER #(`NUM_FLOORS)::DECIMAL_TO_ONE_HOT(floor))) begin
+                `uvm_info(get_full_name(),$sformatf("DN Request already exists in queue, avoiding"),UVM_LOW);
+                return 1; 
+            end
+        end else if (req_type == STOP) begin
+            if(lift_controller_vif.flr_rqst_status & (ENCODER #(`NUM_FLOORS)::DECIMAL_TO_ONE_HOT(floor))) begin
+                `uvm_info(get_full_name(),$sformatf("STOP Request already exists in queue, avoiding"),UVM_LOW);
+                return 1; 
+            end
+        end
+
+        `uvm_info(get_full_name(),$sformatf("Fresh request, driving to DUT"),UVM_LOW);
+        return 0;
+
+    endfunction
 
     virtual task drive_transfer(int floor, lift_request req_type);
         if(req_type == UP) begin

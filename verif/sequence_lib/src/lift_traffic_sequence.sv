@@ -15,6 +15,7 @@ class lift_traffic_sequence extends lift_controller_base_seq;
         string s_traffic;
         op_cond req_traffic = MODERATE;
         byte person_id;
+        int curr_floor;
 
         super.body();
 
@@ -34,18 +35,32 @@ class lift_traffic_sequence extends lift_controller_base_seq;
         for(int i=0;i<`MAX_REQUESTS;i++) begin
             `uvm_info(get_full_name(),$sformatf("UVM_SEQUENCE : Send request traffic and add delay"),UVM_LOW);
             
+            // Person requests elevator from certain floor
             `uvm_do_with(lift_config,{lift_config.traffic == req_traffic; lift_config.req_type != STOP;})
             person_id = lift_config.person_id;
+            curr_floor = lift_config.floor;
             fork
                 begin
+                    // Person waits for elevator to arrive at that floor and door open
                     super.wait_for_elevator(lift_config.floor, lift_config.req_type, person_id);
-                    // #10; // Dummy
-                    `uvm_do_with(lift_config,{lift_config.traffic == req_traffic; lift_config.req_type == STOP; lift_config.person_id == person_id;})
-                    // #10; // Dummy
+                    // Person gets in and selects appropriate destination floor in desired direction only
+                    if(lift_config.req_type == DN) begin
+                        `uvm_do_with(lift_config,{  lift_config.traffic == req_traffic;
+                        lift_config.req_type == STOP; 
+                        lift_config.person_id == person_id;
+                        lift_config.floor < curr_floor;}) 
+                    end else begin
+                        `uvm_do_with(lift_config,{  lift_config.traffic == req_traffic;
+                        lift_config.req_type == STOP; 
+                        lift_config.person_id == person_id;
+                        lift_config.floor > curr_floor;}) 
+                    end
+                    // Person waits inside elevator to reach that floor, and then deboards
                     super.wait_for_elevator(lift_config.floor, lift_config.req_type, person_id);
                 end
+            // We do not want one person's waiting actions to prohibit any other person
             join_none
-            #(lift_config.delay); // Delay
+            #(lift_config.delay); // Delay between multiple people sending requests
         end
     endtask
 

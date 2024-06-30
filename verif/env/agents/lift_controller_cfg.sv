@@ -23,6 +23,9 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     rand int delay;
     randc byte person_id; 
 
+    // If a request is already present, the person shall not press button again, thereby nullifying request
+    rand bit no_cancellation; 
+
     // For modelling specialized testcases
     rand int pref_floor_1;
     rand int pref_floor_2;
@@ -34,6 +37,7 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
         `uvm_field_int(floor, UVM_ALL_ON)
         `uvm_field_int(delay, UVM_ALL_ON)
         `uvm_field_int(person_id, UVM_ALL_ON)
+        `uvm_field_int(no_cancellation, UVM_NOCOMPARE || UVM_ABSTRACT)
         `uvm_field_int(pref_floor_1, UVM_ALL_ON)
         `uvm_field_int(pref_floor_2, UVM_ALL_ON)
         `uvm_field_int(pref_floor_3, UVM_ALL_ON)
@@ -46,7 +50,15 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     // Primitives
     constraint delay_c { delay inside {[0:5000]}; }            
     constraint floor_c { floor inside {[1:N_FLOORS]}; }           
-    constraint req_type_c { req_type inside {UP, DN, STOP}; }  
+    constraint req_type_c { 
+        if (floor == N_FLOORS) {
+            req_type inside {DN, STOP}; 
+        } else if (floor == 0) {
+            req_type inside {UP, STOP}; 
+        } else {
+            req_type inside {UP, DN, STOP}; 
+        }
+    }  
 
     // Delay distribution based on traffic conditions
     constraint delay_distribution {
@@ -59,6 +71,11 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
         } else {
             delay dist {MODERATE_DELAY_DIST[0] := 20, [MODERATE_DELAY_DIST[1]:MODERATE_DELAY_DIST[2]] := 60, MODERATE_DELAY_DIST[3] := 20};
         }
+    }
+
+    // Unless overridden, no person should attempt to cancel any request
+    constraint sane_person_c {
+        soft no_cancellation == 1;
     }
 
     // Additional constraints based on traffic patterns
