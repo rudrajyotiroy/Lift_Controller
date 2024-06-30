@@ -53,7 +53,7 @@ class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
     constraint req_type_c { 
         if (floor == N_FLOORS) {
             req_type inside {DN, STOP}; 
-        } else if (floor == 0) {
+        } else if (floor == 1) {
             req_type inside {UP, STOP}; 
         } else {
             req_type inside {UP, DN, STOP}; 

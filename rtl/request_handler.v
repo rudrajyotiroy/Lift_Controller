@@ -17,6 +17,7 @@ endmodule
 module load_data #(
     parameter N_FLOORS=12
 ) (
+    input clk,
     input [N_FLOORS-1:0] load,
     input [N_FLOORS-1:0] floor,
     input [N_FLOORS-1:0] reg_in,
@@ -25,10 +26,21 @@ module load_data #(
 );
     wire [N_FLOORS-1:0] floor_reset_array;
     wire [N_FLOORS-1:0] req_array_after_reset;
+    reg [N_FLOORS-1:0] load_delay;
 
     assign floor_reset_array = ~({N_FLOORS{flr_reset}} & floor) ;
     assign req_array_after_reset = reg_in & floor_reset_array ;
-    assign reg_out = req_array_after_reset ^ load; // Add support for disabling previous requests
+    assign reg_out = req_array_after_reset ^ (load & ~load_delay); // Add support for disabling previous requests
+
+    // Edge triggered logic
+    initial begin
+        load_delay = {N_FLOORS{1'b0}};
+    end
+
+    always @(posedge clk) begin
+        load_delay = load;
+    end
+
 endmodule // load_data
 
 module request_handler #(
@@ -75,6 +87,7 @@ module request_handler #(
 
     load_data #(N_FLOORS) up_loader_mod
     (
+        .clk(clk),
         .load(i_up_rqst),
         .floor(i_flr_pos),
         .reg_in(o_up_req_queue),
@@ -84,6 +97,7 @@ module request_handler #(
 
     load_data #(N_FLOORS) dn_loader_mod
     (
+        .clk(clk),
         .load(i_dn_rqst),
         .floor(i_flr_pos),
         .reg_in(o_dn_req_queue),
@@ -93,6 +107,7 @@ module request_handler #(
     
     load_data #(N_FLOORS) flr_loader_mod
     (
+        .clk(clk),
         .load(i_flr_rqst),
         .floor(i_flr_pos),
         .reg_in(o_flr_req_queue),

@@ -13,7 +13,7 @@ class lift_traffic_sequence extends lift_controller_base_seq;
 
     virtual task body();
         string s_traffic;
-        op_cond req_traffic = MODERATE;
+        op_cond req_traffic = SCARCE;
 
         super.body();
 

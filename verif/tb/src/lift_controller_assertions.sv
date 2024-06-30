@@ -41,40 +41,75 @@ module lift_controller_assertion #(parameter N_FLOORS=12)
     assert property (motion_floor_check)
     else `uvm_error("MOTION_FLOOR_CHECK", "Motion check failed: Lift should not stop when in-between floors.");
 
-    // Assertion 4: Request clearing checks (To be binded to request array later, NOT at this hierarchy)
-    /*
+    // Assertion 5: If door is opened, it should stay open for atleast 150 clock edges
+
+    property door_open_stable_check();
+        @(posedge lift_intf.clk) 
+        $rose(lift_intf.door_open) |-> ##1 $stable(lift_intf.door_open)[*150];
+    endproperty
+    assert property (door_open_stable_check)
+    else `uvm_error("DOOR_OPEN_STABLE_CHECK", "Door was opened and closed before 150 cycles elapsed");
+
+    // Assertion 6: Floor sense and request arrays are onehot0
+
+    property floor_sense_one_hot_or_zero_check();
+        @(posedge lift_intf.clk) $onehot0(lift_intf.floor_sense);
+    endproperty
+    assert property (floor_sense_one_hot_or_zero_check)
+    else `uvm_error("FLOOR_SENSE_ONE_HOT_CHECK", "floor_sense is NOT one-hot or zero");
+
+    property up_rqst_one_hot_or_zero_check();
+        @(posedge lift_intf.clk) $onehot0(lift_intf.up_rqst);
+    endproperty
+    assert property (up_rqst_one_hot_or_zero_check)
+    else `uvm_error("UP_RQST_ONE_HOT_CHECK", "up_rqst is NOT one-hot or zero");
+
+    property dn_rqst_one_hot_or_zero_check();
+        @(posedge lift_intf.clk) $onehot0(lift_intf.dn_rqst);
+    endproperty
+    assert property (dn_rqst_one_hot_or_zero_check)
+    else `uvm_error("DN_RQST_ONE_HOT_CHECK", "dn_rqst is NOT one-hot or zero");
+
+    property flr_rqst_one_hot_or_zero_check();
+        @(posedge lift_intf.clk) $onehot0(lift_intf.flr_rqst);
+    endproperty
+    assert property (flr_rqst_one_hot_or_zero_check)
+    else `uvm_error("FLR_RQST_ONE_HOT_CHECK", "flr_rqst is NOT one-hot or zero");
+
+    // Assertion 7: Request clearing checks, when request is cleared lift should be stopped at appropriate floor in appropriate dir and door should be open just before that
+    
     property up_request_clear_check();
         @(posedge lift_intf.clk)
-        ((lift_intf.up_rqst ^ $past(lift_intf.up_rqst)) & ~lift_intf.up_rqst) |-> 
-        ((lift_intf.motion == 1'b0) && 
-        (lift_intf.door_open == 1'b1) && 
-        (lift_intf.direction == 1'b1) &&
-        ((lift_intf.up_rqst ^ $past(lift_intf.up_rqst)) & lift_intf.floor_sense) != 0);
+        ((lift_intf.up_rqst_status ^ $past(lift_intf.up_rqst_status)) & ~lift_intf.up_rqst_status) |-> 
+        (($past(lift_intf.motion) == 1'b0) && 
+        ($past(lift_intf.door_open, 2) == 1'b1) && 
+        ($past(lift_intf.direction) == 1'b1) &&
+        ((lift_intf.up_rqst_status ^ $past(lift_intf.up_rqst_status)) & lift_intf.floor_sense) != 0);
     endproperty
     assert property (up_request_clear_check)
     else `uvm_error("UP_REQUEST_CLEAR_CHECK", "Up request clear check failed: Lift up request should be cleared only when the lift is stopped at the appropriate floor, the door is open, and the direction is up.");
 
     property dn_request_clear_check();
         @(posedge lift_intf.clk)
-        ((lift_intf.dn_rqst ^ $past(lift_intf.dn_rqst)) & ~lift_intf.dn_rqst) |-> 
-        ((lift_intf.motion == 1'b0) && 
-        (lift_intf.door_open == 1'b1) && 
-        (lift_intf.direction == 1'b0) &&
-        ((lift_intf.dn_rqst ^ $past(lift_intf.dn_rqst)) & lift_intf.floor_sense) != 0);
+        ((lift_intf.dn_rqst_status ^ $past(lift_intf.dn_rqst_status)) & ~lift_intf.dn_rqst_status) |-> 
+        (($past(lift_intf.motion) == 1'b0) && 
+        ($past(lift_intf.door_open, 2) == 1'b1) && 
+        ($past(lift_intf.direction) == 1'b0) &&
+        ((lift_intf.dn_rqst_status ^ $past(lift_intf.dn_rqst_status)) & lift_intf.floor_sense) != 0);
     endproperty
     assert property (dn_request_clear_check)
     else `uvm_error("DN_REQUEST_CLEAR_CHECK", "Down request clear check failed: Lift down request should be cleared only when the lift is stopped at the appropriate floor, the door is open, and the direction is down.");
 
     property flr_request_clear_check();
         @(posedge lift_intf.clk)
-        ((lift_intf.flr_rqst ^ $past(lift_intf.flr_rqst)) & ~lift_intf.flr_rqst) |-> 
-        ((lift_intf.motion == 1'b0) && 
-        (lift_intf.door_open == 1'b1) && 
-        ((lift_intf.flr_rqst ^ $past(lift_intf.flr_rqst)) & lift_intf.floor_sense) != 0);
+        ((lift_intf.flr_rqst_status ^ $past(lift_intf.flr_rqst_status)) & ~lift_intf.flr_rqst_status) |-> 
+        (($past(lift_intf.motion) == 1'b0) && 
+        ($past(lift_intf.door_open, 2) == 1'b1) && 
+        ((lift_intf.flr_rqst_status ^ $past(lift_intf.flr_rqst_status)) & lift_intf.floor_sense) != 0);
     endproperty
     assert property (flr_request_clear_check)
     else `uvm_error("FLR_REQUEST_CLEAR_CHECK", "Floor request clear check failed: Lift floor request should be cleared only when the lift is stopped at the appropriate floor and the door is open.");
-    */
+    
 
 endmodule
 
