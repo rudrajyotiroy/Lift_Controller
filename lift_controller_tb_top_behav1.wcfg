@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="lift_controller_tb_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="lift_controller_agent_pkg" />
+            <top_module name="lift_controller_env_pkg" />
+            <top_module name="lift_controller_seq_pkg" />
+            <top_module name="lift_controller_tb_top" />
+            <top_module name="lift_controller_test_pkg" />
+            <top_module name="std" />
+            <top_module name="uvm_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="172.251001 us"></ZoomEndTime>
+      <Cursor1Time time="172.251000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="159"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="13" />
+   <wvobject fp_name="/lift_controller_tb_top/top_if/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/up_rqst" type="array">
+      <obj_property name="ElementShortName">up_rqst[23:0]</obj_property>
+      <obj_property name="ObjectShortName">up_rqst[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/dn_rqst" type="array">
+      <obj_property name="ElementShortName">dn_rqst[23:0]</obj_property>
+      <obj_property name="ObjectShortName">dn_rqst[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/flr_rqst" type="array">
+      <obj_property name="ElementShortName">flr_rqst[23:0]</obj_property>
+      <obj_property name="ObjectShortName">flr_rqst[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/force_open" type="logic">
+      <obj_property name="ElementShortName">force_open</obj_property>
+      <obj_property name="ObjectShortName">force_open</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/floor_sense" type="array">
+      <obj_property name="ElementShortName">floor_sense[23:0]</obj_property>
+      <obj_property name="ObjectShortName">floor_sense[23:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/direction" type="logic">
+      <obj_property name="ElementShortName">direction</obj_property>
+      <obj_property name="ObjectShortName">direction</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/motion" type="logic">
+      <obj_property name="ElementShortName">motion</obj_property>
+      <obj_property name="ObjectShortName">motion</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/door_open" type="logic">
+      <obj_property name="ElementShortName">door_open</obj_property>
+      <obj_property name="ObjectShortName">door_open</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/up_rqst_status" type="array">
+      <obj_property name="ElementShortName">up_rqst_status[23:0]</obj_property>
+      <obj_property name="ObjectShortName">up_rqst_status[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/dn_rqst_status" type="array">
+      <obj_property name="ElementShortName">dn_rqst_status[23:0]</obj_property>
+      <obj_property name="ObjectShortName">dn_rqst_status[23:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/lift_controller_tb_top/top_if/flr_rqst_status" type="array">
+      <obj_property name="ElementShortName">flr_rqst_status[23:0]</obj_property>
+      <obj_property name="ObjectShortName">flr_rqst_status[23:0]</obj_property>
+   </wvobject>
+</wave_config>

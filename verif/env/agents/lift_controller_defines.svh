@@ -2,7 +2,7 @@
 `define LIFT_CONTROLLER_DEFINES
 
 `define MAX_REQUESTS 100
-`define NUM_FLOORS 24
+`define NUM_FLOORS 20
 `define DRAIN_TIME 500000
 
 `define MONO_LIFT

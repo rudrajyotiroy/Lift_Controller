@@ -19,7 +19,7 @@ module lift_controller_tb_top;
     
     logic clk;
     logic reset;
-    parameter N_FLOORS = 12;
+    parameter N_FLOORS = `NUM_FLOORS;
     `ifndef MONO_LIFT
     parameter N_LIFTS = 10;
     `endif
@@ -73,7 +73,7 @@ module lift_controller_tb_top;
 
     initial begin
         `ifdef MONO_LIFT
-            uvm_config_db#(virtual lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+            uvm_config_db#(virtual lift_controller_if #(`NUM_FLOORS))::set(uvm_root::get(),"*","lift_controller_vif",top_if);
         `else
             uvm_config_db#(virtual multi_lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
         `endif

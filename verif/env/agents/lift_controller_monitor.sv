@@ -4,7 +4,7 @@
 class lift_controller_monitor extends uvm_monitor;
 
     // Virtual interface
-    virtual lift_controller_if lift_controller_vif;
+    virtual lift_controller_if #(`NUM_FLOORS) lift_controller_vif;
   
     // Analysis port to send the transaction to the scoreboard or other components
     uvm_analysis_port #(lift_controller_seq_item) output_txn_port;
@@ -23,7 +23,7 @@ class lift_controller_monitor extends uvm_monitor;
     // Build phase: Get the virtual interface
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (!uvm_config_db#(virtual lift_controller_if)::get(this, "", "lift_controller_vif", lift_controller_vif)) begin
+        if (!uvm_config_db#(virtual lift_controller_if #(`NUM_FLOORS))::get(this, "", "lift_controller_vif", lift_controller_vif)) begin
             `uvm_fatal(get_full_name(),"Virtual interface not found in UVM Monitor")
         end else begin
             `uvm_info(get_full_name(),$sformatf("Virtual interface obtained and connected to UVM Monitor"),UVM_LOW);

@@ -38,13 +38,13 @@ virtual class ENCODER #(parameter N_FLOORS = 12);
 endclass
 
 // Define a driver class that extends uvm_driver
-class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
+class lift_controller_driver extends uvm_driver #(lift_controller_cfg #(`NUM_FLOORS));
 
-    lift_controller_cfg tr;
+    lift_controller_cfg #(`NUM_FLOORS) tr;
     lift_controller_seq_item tr_to_sb;
 
     // Declare the virtual interface
-    virtual lift_controller_if lift_controller_vif;
+    virtual lift_controller_if #(`NUM_FLOORS) lift_controller_vif;
 
     // Declare the driver to scoreboard input port (Connects to scoreboard export in env)
     uvm_analysis_port #(lift_controller_seq_item) input_txn_port;
@@ -63,7 +63,7 @@ class lift_controller_driver extends uvm_driver #(lift_controller_cfg);
     // Build phase: Get the virtual interface
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
-        if (!uvm_config_db#(virtual lift_controller_if)::get(this, "", "lift_controller_vif", lift_controller_vif)) begin
+        if (!uvm_config_db#(virtual lift_controller_if #(`NUM_FLOORS))::get(this, "", "lift_controller_vif", lift_controller_vif)) begin
             `uvm_fatal(get_full_name(),"Virtual interface not found in UVM Driver")
         end else begin
             `uvm_info(get_full_name(),$sformatf("Virtual interface obtained and connected to UVM Driver"),UVM_LOW);

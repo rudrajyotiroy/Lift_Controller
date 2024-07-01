@@ -4,12 +4,12 @@
 typedef enum { DN, UP, STOP, NULL } lift_request;
 typedef enum { MODERATE, HEAVY, LIGHT, SCARCE, CONVERGING, DIVERGING, PAIRED, TWO_WAY_CONV, TWO_WAY_DIV, PAIRED_W_HOTSPOT } op_cond;
 
-class lift_controller_cfg #(parameter N_FLOORS = 12) extends uvm_sequence_item;
+class lift_controller_cfg #(parameter N_FLOORS = `NUM_FLOORS) extends uvm_sequence_item;
 
-    parameter int MODERATE_DELAY_DIST[4] = '{200, 300, 700, 800};
-    parameter int HEAVY_DELAY_DIST[5] = '{100, 150, 400, 450, 500};
-    parameter int LIGHT_DELAY_DIST[3] = '{500, 900, 1000};
-    parameter int SCARCE_DELAY_DIST[3] = '{1000, 2000, 800};
+    parameter int MODERATE_DELAY_DIST[4] = '{500, 1000, 2000, 3000};
+    parameter int HEAVY_DELAY_DIST[5] = '{100, 300, 550, 600, 1000};
+    parameter int LIGHT_DELAY_DIST[3] = '{2000, 5000, 1000};
+    parameter int SCARCE_DELAY_DIST[3] = '{5000, 10000, 2000};
     parameter BIAS_CONVERGING = 70;
     parameter BIAS_DIVERGING = 70;
     parameter BIAS_PAIRED = 35;

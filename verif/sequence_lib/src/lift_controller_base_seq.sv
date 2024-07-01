@@ -4,7 +4,7 @@
 class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
 
     // Virtual interface
-    virtual lift_controller_if lift_controller_vif;
+    virtual lift_controller_if #(`NUM_FLOORS) lift_controller_vif;
 
     typedef struct {
         int origin_floor;
@@ -28,7 +28,7 @@ class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
         phase = get_starting_phase; // Retrieve phase information
         if (phase != null) phase.raise_objection(this);
 
-        if (!uvm_config_db#(virtual lift_controller_if)::get(null, "", "lift_controller_vif", lift_controller_vif)) begin
+        if (!uvm_config_db#(virtual lift_controller_if #(`NUM_FLOORS))::get(null, "", "lift_controller_vif", lift_controller_vif)) begin
             `uvm_fatal(get_full_name(),"Virtual interface not found in UVM Monitor")
         end else begin
             `uvm_info(get_full_name(),$sformatf("Virtual interface obtained and connected to UVM Monitor"),UVM_LOW);

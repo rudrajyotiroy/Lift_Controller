@@ -8,3 +8,4 @@ adder_hls/**
 vivado.jou
 vivado.log
 vivado_pid*
+Lift_Controller.srcs/utils_1/imports/synth_1/door_controller.dcp
