@@ -2,7 +2,7 @@ Info: [VCS_SAVE_RESTORE_INFO] ASLR (Address Space Layout Randomization) is detec
 Please use '-no_save' simv switch to avoid re-execution or '-suppress=ASLR_DETECTED_INFO' to suppress this message.
 Chronologic VCS simulator copyright 1991-2023
 Contains Synopsys proprietary information.
-Compiler version V-2023.12-SP2-1_Full64; Runtime version V-2023.12-SP2-1_Full64;  Nov 24 00:03 2024
+Compiler version V-2023.12-SP2-1_Full64; Runtime version V-2023.12-SP2-1_Full64;  Nov 24 00:36 2024
 ----------------------------------------------------------------
 UVM-1.1d.Synopsys
 (C) 2007-2013 Mentor Graphics Corporation
@@ -8759,5 +8759,5 @@ $finish called from file "/usr/caen/vcs-2023.12-SP2-1/etc/uvm/base/uvm_root.svh"
 $finish at simulation time            509711000
            V C S   S i m u l a t i o n   R e p o r t 
 Time: 509711000 ps
-CPU Time:      0.960 seconds;       Data structure size:   0.6Mb
-Sun Nov 24 00:03:17 2024
+CPU Time:      1.210 seconds;       Data structure size:   0.6Mb
+Sun Nov 24 00:36:20 2024
