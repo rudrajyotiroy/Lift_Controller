@@ -25,7 +25,11 @@ class lift_controller_base_seq extends uvm_sequence#(lift_controller_cfg);
 
     task pre_body();
         `uvm_info(get_type_name(), "Inside pre_body, raising objection", UVM_LOW);
-        phase = get_starting_phase; // Retrieve phase information
+        `ifdef COMPILE_VCS
+            phase = uvm_sequence_base::starting_phase; // Pre-UVM 1.2
+        `else
+            phase = get_starting_phase; // Retrieve phase information (UVM 1.2+)
+        `endif
         if (phase != null) phase.raise_objection(this);
 
         if (!uvm_config_db#(virtual lift_controller_if #(`NUM_FLOORS))::get(null, "", "lift_controller_vif", lift_controller_vif)) begin

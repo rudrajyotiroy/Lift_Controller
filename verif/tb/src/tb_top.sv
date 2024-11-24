@@ -4,8 +4,19 @@
 `timescale 1ns/1ps
 `include "uvm_macros.svh"
 
-// Include RTL files
-// `include "lift_controller_wrapper.sv"
+`ifdef COMPILE_VCS
+    // Include Packages
+    `include "lift_controller_agent_pkg.sv"
+    `include "lift_controller_env_pkg.sv"
+    `include "lift_controller_seq_pkg.sv"
+    `include "lift_controller_test_pkg.sv"
+
+    // Include Defines, RTL files
+    `include "lift_controller_defines.svh"
+    `include "lift_controller_wrapper.sv"
+`endif
+
+// Include Assertion and Movement Emulator
 `include "lift_controller_assertions.sv"
 `include "lift_movement_emulator.sv"
 
@@ -77,7 +88,7 @@ module lift_controller_tb_top;
         `else
             uvm_config_db#(virtual multi_lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
         `endif
-        run_test("lift_controller_base_test");
+        run_test();
     end
 
 endmodule

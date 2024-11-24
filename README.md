@@ -56,7 +56,12 @@ https://support.xilinx.com/s/article/1070861?language=en_US
 
 For non-GUI simulation, please follow README.txt in vivado_sim directory
 
-Synopsis VCS support to be added later
+Synopsis VCS support:
+cd workdir
+make build
+
+Note : phase obtaining procedure is different for UVM1.2+, please fix manually in lift_controller_base_seq.sv
+Guide: https://users.ece.utexas.edu/~patt/10s.382N/handouts/vcs.pdf
 
 Current Status : All assertions passing for base testcase, to run all testcases and add new assertions
 

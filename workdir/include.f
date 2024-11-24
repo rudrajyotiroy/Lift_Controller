@@ -1,0 +1,11 @@
++incdir+../verif/
++incdir+../verif/tb
++incdir+../verif/tb/src
++incdir+../verif/sequence_lib
++incdir+../verif/sequence_lib/src
++incdir+../verif/tests
++incdir+../verif/tests/src
++incdir+../verif/env
++incdir+../verif/env/top
++incdir+../verif/env/agents
++incdir+../rtl
