@@ -1,7 +1,7 @@
 `ifndef LIFT_CONTROLLER_INTERFACE
 `define LIFT_CONTROLLER_INTERFACE
 
-`define MONO_LIFT
+// `define MONO_LIFT
 `define DEBUG_INTERFACE
 
 interface lift_controller_if # (parameter N_FLOORS=12)(input logic clk, input logic reset);

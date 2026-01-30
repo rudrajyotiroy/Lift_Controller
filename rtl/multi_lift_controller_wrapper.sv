@@ -29,13 +29,17 @@ generate
         // Forward all ports that directly connect
         // Distribute Input Ports
         assign int_if[i].flr_rqst = top_if.flr_rqst[i];
-        assign int_if[i].floor_sense = top_if.floor_sense[i]; 
         assign int_if[i].force_open = top_if.force_open[i];
+
         // Aggregate Output Ports
         assign top_if.door_open[i] = int_if[i].door_open;
         assign top_if.motion[i] = int_if[i].motion;
         assign top_if.direction[i] = int_if[i].direction;
-        assign top.if.flr_rqst_status[i] = int_if[i].flr_rqst_status;
+        assign top_if.floor_sense[i] = int_if[i].floor_sense;
+
+        `ifdef DEBUG_INTERFACE
+        assign top_if.flr_rqst_status[i] = int_if[i].flr_rqst_status;
+        `endif
     end
 endgenerate
 

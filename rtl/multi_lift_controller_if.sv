@@ -24,6 +24,11 @@ interface multi_lift_controller_if #(parameter N_FLOORS=12, parameter N_LIFTS = 
     logic [N_FLOORS-1:0] dn_rqst_status;
     logic [N_FLOORS-1:0] flr_rqst_status [N_LIFTS-1:0];
     `endif
-endinterface //lift_controller_if
+
+    // Helper to get global status (OR of all lifts)
+    logic [N_FLOORS-1:0] global_up_rqst_status;
+    logic [N_FLOORS-1:0] global_dn_rqst_status;
+
+endinterface //multi_lift_controller_if
 
 `endif

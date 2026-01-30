@@ -8,4 +8,13 @@
 +incdir+../verif/env
 +incdir+../verif/env/top
 +incdir+../verif/env/agents
++incdir+../verif/env/multi_lift_agents
 +incdir+../rtl
+
+../verif/env/agents/lift_controller_agent_pkg.sv
+../verif/env/top/lift_controller_env_pkg.sv
+../verif/sequence_lib/src/lift_controller_seq_pkg.sv
+../verif/tests/src/lift_controller_test_pkg.sv
+../verif/env/multi_lift_agents/multi_lift_controller_agent_pkg.sv
+../verif/env/top/multi_lift_controller_env_pkg.sv
+../verif/tests/src/multi_lift_controller_test_pkg.sv
