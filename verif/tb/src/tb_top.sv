@@ -5,35 +5,39 @@
 `include "uvm_macros.svh"
 
 `ifdef COMPILE_VCS
-    // Include Packages
-    `include "lift_controller_agent_pkg.sv"
-    `include "lift_controller_env_pkg.sv"
-    `include "lift_controller_seq_pkg.sv"
-    `include "lift_controller_test_pkg.sv"
-
     // Include Defines, RTL files
     `include "lift_controller_defines.svh"
     `include "lift_controller_wrapper.sv"
+
+    `ifndef MONO_LIFT
+        `include "multi_lift_controller_wrapper.sv"
+    `endif
 `endif
 
 // Include Assertion and Movement Emulator
 `include "lift_controller_assertions.sv"
 `include "lift_movement_emulator.sv"
 
-// Define to use stable single-lift version in TB
-
 import uvm_pkg::*;
+import lift_controller_agent_pkg::*;
+import lift_controller_env_pkg::*;
+import lift_controller_seq_pkg::*;
+import lift_controller_test_pkg::*;
+
+`ifndef MONO_LIFT
+import multi_lift_controller_agent_pkg::*;
+import multi_lift_controller_env_pkg::*;
+import multi_lift_controller_test_pkg::*;
+`endif
+
 module lift_controller_tb_top;
-    import lift_controller_test_pkg::*;
 
     // Declaration of Local Fields
     
     logic clk;
     logic reset;
     parameter N_FLOORS = `NUM_FLOORS;
-    `ifndef MONO_LIFT
-    parameter N_LIFTS = 10;
-    `endif
+    parameter N_LIFTS = `NUM_LIFTS;
 
     //clock generation
     
@@ -44,9 +48,7 @@ module lift_controller_tb_top;
         end
     end
     
-    //reset Generation : change may required while generating reset for 
-    //                   synchronous/Asynchronous or Active low/Active high
-    
+    //reset Generation
     initial begin
         reset = 1;  
         #5 reset = 0;
@@ -72,7 +74,40 @@ module lift_controller_tb_top;
 
     /********************* DUT and Emulator (Wrapped) Instantation **********************************/
     multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if (clk, reset);
-    multi_lift_controller_wrapper #(N_FLOORS, N_LIFTS) u_lift (top_if);
+
+    logic [N_FLOORS-1:0] top_flr_rqst [N_LIFTS];
+    logic [N_LIFTS-1:0] top_force_open;
+
+    multi_lift_controller_wrapper #(N_FLOORS, N_LIFTS) u_lift (
+        .top_if(top_if),
+        .flr_rqst(top_flr_rqst),
+        .force_open(top_force_open)
+    );
+
+    // Individual interfaces for monitoring and direct driving
+    lift_controller_if #(N_FLOORS) lift_vif [N_LIFTS] (clk, reset);
+
+    genvar i;
+    generate
+        for (i = 0; i < N_LIFTS; i = i + 1) begin
+            assign lift_vif[i].floor_sense = u_lift.int_if[i].floor_sense;
+            assign lift_vif[i].direction = u_lift.int_if[i].direction;
+            assign lift_vif[i].motion = u_lift.int_if[i].motion;
+            assign lift_vif[i].door_open = u_lift.int_if[i].door_open;
+            assign lift_vif[i].up_rqst = u_lift.int_if[i].up_rqst;
+            assign lift_vif[i].dn_rqst = u_lift.int_if[i].dn_rqst;
+
+            // Connect direct drive signals from TB to RTL ports
+            assign top_flr_rqst[i] = lift_vif[i].flr_rqst;
+            assign top_force_open[i] = lift_vif[i].force_open;
+
+            `ifdef DEBUG_INTERFACE
+            assign lift_vif[i].up_rqst_status = u_lift.int_if[i].up_rqst_status;
+            assign lift_vif[i].dn_rqst_status = u_lift.int_if[i].dn_rqst_status;
+            assign lift_vif[i].flr_rqst_status = u_lift.int_if[i].flr_rqst_status;
+            `endif
+        end
+    endgenerate
 
     `endif
 
@@ -84,9 +119,13 @@ module lift_controller_tb_top;
 
     initial begin
         `ifdef MONO_LIFT
-            uvm_config_db#(virtual lift_controller_if #(`NUM_FLOORS))::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+            uvm_config_db#(virtual lift_controller_if #(N_FLOORS))::set(uvm_root::get(),"*","lift_controller_vif",top_if);
         `else
-            uvm_config_db#(virtual multi_lift_controller_if)::set(uvm_root::get(),"*","lift_controller_vif",top_if);
+            uvm_config_db#(virtual multi_lift_controller_if #(N_FLOORS, N_LIFTS))::set(uvm_root::get(),"*","multi_lift_controller_vif",top_if);
+            for (int j = 0; j < N_LIFTS; j++) begin
+                uvm_config_db#(virtual lift_controller_if #(N_FLOORS))::set(uvm_root::get(), $sformatf("*.single_agent_%0d*", j), "lift_controller_vif", lift_vif[j]);
+                uvm_config_db#(virtual lift_controller_if #(N_FLOORS))::set(uvm_root::get(), "*", $sformatf("lift_vif_%0d", j), lift_vif[j]);
+            end
         `endif
         run_test();
     end

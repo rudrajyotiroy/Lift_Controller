@@ -8,7 +8,9 @@
 `include "multi_lift_controller_arbiter.sv"
 
 module multi_lift_controller_wrapper #(parameter N_FLOORS=12, parameter N_LIFTS = 10) (
-    multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if
+    multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if,
+    input logic [N_FLOORS-1:0] flr_rqst [N_LIFTS-1:0],
+    input logic [N_LIFTS-1:0] force_open
 );
 
 // Intermediate Interfaces
@@ -22,20 +24,15 @@ generate
         lift_movement_emulator #(N_FLOORS) u_lift_emul 
         (
             .clk(int_if[i].clk),
+            .reset(int_if[i].reset),
             .direction(int_if[i].direction),
             .motion(int_if[i].motion),
             .floor_sense(int_if[i].floor_sense)
         );
-        // Forward all ports that directly connect
-        // Distribute Input Ports
-        assign int_if[i].flr_rqst = top_if.flr_rqst[i];
-        assign int_if[i].floor_sense = top_if.floor_sense[i]; 
-        assign int_if[i].force_open = top_if.force_open[i];
-        // Aggregate Output Ports
-        assign top_if.door_open[i] = int_if[i].door_open;
-        assign top_if.motion[i] = int_if[i].motion;
-        assign top_if.direction[i] = int_if[i].direction;
-        assign top.if.flr_rqst_status[i] = int_if[i].flr_rqst_status;
+
+        // Directly connect floor requests and force open to internal interfaces
+        assign int_if[i].flr_rqst = flr_rqst[i];
+        assign int_if[i].force_open = force_open[i];
     end
 endgenerate
 

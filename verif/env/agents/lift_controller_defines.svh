@@ -3,9 +3,10 @@
 
 `define MAX_REQUESTS 100
 `define NUM_FLOORS 20
+`define NUM_LIFTS 10
 `define DRAIN_TIME 500000
 
-`define MONO_LIFT
+// `define MONO_LIFT
 `define DEBUG_INTERFACE
 
 `endif
