@@ -1,0 +1,44 @@
+name: Multi-Lift Controller Simulation
+
+on:
+  push:
+    branches: [ main, multi-elevator-support, multi-elevator-support-v2, multi-elevator-support-v3 ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  simulate:
+    runs-on: self-hosted # This tells GitHub to use your local PC (once registered as a runner)
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Vivado Simulation
+        shell: bash
+        run: |
+          # If Vivado is not in your system PATH, you can source the settings here
+          # Replace /opt/Xilinx/Vivado/2021.2/settings64.sh with your actual path if needed
+          if [ -f "/opt/Xilinx/Vivado/2021.2/settings64.sh" ]; then
+            source /opt/Xilinx/Vivado/2021.2/settings64.sh
+          elif [ -f "C:/Xilinx/Vivado/2021.2/settings64.bat" ]; then
+            # For Windows runners, this would need to be handled differently, 
+            # but usually, users add it to System PATH.
+            echo "Windows detected, assuming Vivado is in PATH"
+          fi
+          
+          cd vivado_sim/xsim
+          chmod +x lift_controller_tb_top.sh
+          ./lift_controller_tb_top.sh > sim_output.log 2>&1
+          
+      - name: Verify Results
+        run: |
+          cd vivado_sim/xsim
+          cat sim_output.log
+          if grep -q "TEST CASE PASSED" sim_output.log; then
+            echo "Simulation Successful"
+            exit 0
+          else
+            echo "Simulation Failed or 'TEST CASE PASSED' not found"
+            exit 1
+          fi
