@@ -1,11 +1,11 @@
 `ifndef MULTI_LIFT_CONTROLLER_DRIVER
 `define MULTI_LIFT_CONTROLLER_DRIVER
 
-class multi_lift_controller_driver #(parameter N_FLOORS = `NUM_FLOORS, parameter N_LIFTS = 10) extends uvm_driver #(multi_lift_controller_cfg #(N_FLOORS, N_LIFTS));
+class multi_lift_controller_driver #(parameter N_FLOORS = `NUM_FLOORS, parameter N_LIFTS = 10) extends uvm_driver #(person_journey_item);
     // Global virtual interface
     virtual multi_lift_controller_if #(N_FLOORS, N_LIFTS) vif;
 
-    // Individual lift virtual interfaces for reactive scoreboard feeding
+    // Individual lift virtual interfaces
     virtual lift_controller_if #(N_FLOORS) lift_vifs[N_LIFTS];
 
     // Analysis ports for each lift's scoreboard
@@ -36,93 +36,106 @@ class multi_lift_controller_driver #(parameter N_FLOORS = `NUM_FLOORS, parameter
         // Initialize
         vif.up_rqst <= 0;
         vif.dn_rqst <= 0;
-        for (int i=0; i<N_LIFTS; i++) vif.flr_rqst[i] <= 0;
-        vif.force_open <= 0;
 
         wait(!vif.reset);
 
-        // Start reactive monitoring threads for each lift
-        for (int i = 0; i < N_LIFTS; i++) begin
-            fork
-                int id = i;
-                monitor_lift_requests(id);
-            join_none
-        end
-
-        // Main request driving loop
         forever begin
             seq_item_port.get_next_item(req);
-            `uvm_info(get_full_name(), $sformatf("Driving multi-lift request: %s", req.convert2string()), UVM_LOW)
-            drive_transfer(req);
-            seq_item_port.item_done();
+            `uvm_info(get_full_name(), $sformatf("New journey request for Person %0d: %d -> %d", req.person_id, req.src_floor, req.dest_floor), UVM_LOW)
+            fork
+                automatic person_journey_item journey = req;
+                begin
+                    handle_journey(journey);
+                    // We don't call item_done() here if we want the sequence to wait.
+                    // Actually, UVM sequences wait on item_done if they use `uvm_do`.
+                    // But if we have parallel sequences, we should manage them carefully.
+                    seq_item_port.item_done();
+                end
+            join_none
         end
     endtask
 
-    // Reactive task to feed scoreboards based on what each lift actually sees
-    task monitor_lift_requests(int id);
-        forever begin
-            @(posedge lift_vifs[id].clk);
-            if (lift_vifs[id].up_rqst != 0) begin
-                int f = ENCODER #(N_FLOORS)::ONE_HOT_TO_DECIMAL(lift_vifs[id].up_rqst);
-                `uvm_info(get_full_name(), $sformatf("Lift %0d received UP request at floor %0d (reactive)", id, f), UVM_HIGH)
-                send_to_sb(id, f, UP);
-                while (lift_vifs[id].up_rqst != 0) @(posedge lift_vifs[id].clk);
+    task handle_journey(person_journey_item journey);
+        hall_panel h_panel = hall_panel::type_id::create("h_panel");
+        car_panel c_panel = car_panel::type_id::create("c_panel");
+        lift_request req_type = (journey.dest_floor > journey.src_floor) ? UP : DN;
+        int boarded_lift = -1;
+
+        h_panel.vif = vif;
+        journey.request_time = $realtime;
+
+        // 1. Press global button
+        `uvm_info(get_full_name(), $sformatf("Person %0d pressing %s button at Floor %d", journey.person_id, req_type.name(), journey.src_floor), UVM_MEDIUM)
+        h_panel.press_button(journey.src_floor, req_type);
+
+        // Note: Global requests are handled by the arbiter.
+        // We don't know yet which lift will pick it up.
+        // Once a lift arrives, we'll "press" its internal buttons.
+
+        // 2. Wait for any lift to arrive
+        while (boarded_lift == -1) begin
+            for (int i = 0; i < N_LIFTS; i++) begin
+                if (lift_vifs[i].door_open &&
+                    lift_vifs[i].floor_sense == (1 << (journey.src_floor-1)) &&
+                    ((req_type == UP && lift_vifs[i].direction == 1'b1) ||
+                     (req_type == DN && lift_vifs[i].direction == 1'b0))) begin
+                    boarded_lift = i;
+                    break;
+                end
             end
-            if (lift_vifs[id].dn_rqst != 0) begin
-                int f = ENCODER #(N_FLOORS)::ONE_HOT_TO_DECIMAL(lift_vifs[id].dn_rqst);
-                `uvm_info(get_full_name(), $sformatf("Lift %0d received DN request at floor %0d (reactive)", id, f), UVM_HIGH)
-                send_to_sb(id, f, DN);
-                while (lift_vifs[id].dn_rqst != 0) @(posedge lift_vifs[id].clk);
-            end
-            if (lift_vifs[id].flr_rqst != 0) begin
-                int f = ENCODER #(N_FLOORS)::ONE_HOT_TO_DECIMAL(lift_vifs[id].flr_rqst);
-                `uvm_info(get_full_name(), $sformatf("Lift %0d received STOP request at floor %0d (reactive)", id, f), UVM_HIGH)
-                send_to_sb(id, f, STOP);
-                while (lift_vifs[id].flr_rqst != 0) @(posedge lift_vifs[id].clk);
-            end
+            if (boarded_lift == -1) @(posedge vif.clk);
         end
+
+        journey.boarded_lift_id = boarded_lift;
+        journey.boarding_time = $realtime;
+        $display("[PERSON_JOURNEY] Person %0d chose elevator %0d at Floor %0d", journey.person_id, boarded_lift, journey.src_floor);
+
+        // Scoreboard Update for Hall Request:
+        // Now we know which lift picked it up, so we send the expected transaction to its SB
+        send_sb_hall_request(boarded_lift, journey.src_floor, req_type);
+
+        // 3. OOP Connection Shift: Switch to car panel
+        c_panel.vif = lift_vifs[boarded_lift];
+        c_panel.lift_id = boarded_lift;
+
+        // 4. Send STOP request to destination
+        `uvm_info(get_full_name(), $sformatf("Person %0d inside Lift %0d pressing button for Floor %d", journey.person_id, boarded_lift, journey.dest_floor), UVM_MEDIUM)
+
+        // Scoreboard Update for Car Request:
+        send_sb_car_request(boarded_lift, journey.dest_floor);
+
+        c_panel.press_button(journey.dest_floor, STOP);
+
+        // 5. Wait for destination arrival
+        while (!(lift_vifs[boarded_lift].door_open &&
+                 lift_vifs[boarded_lift].floor_sense == (1 << (journey.dest_floor-1)))) begin
+            @(posedge lift_vifs[boarded_lift].clk);
+        end
+
+        journey.deboarding_time = $realtime;
+        `uvm_info(get_full_name(), $sformatf("Person %0d arrived at Floor %d in Lift %0d", journey.person_id, journey.dest_floor, boarded_lift), UVM_LOW)
     endtask
 
-    task drive_transfer(multi_lift_controller_cfg #(N_FLOORS, N_LIFTS) tr);
-        if (tr.req_type == UP) begin
-            vif.up_rqst = (1 << (tr.floor-1));
-            repeat(5) @(posedge vif.clk);
-            vif.up_rqst = 0;
-        end else if (tr.req_type == DN) begin
-            vif.dn_rqst = (1 << (tr.floor-1));
-            repeat(5) @(posedge vif.clk);
-            vif.dn_rqst = 0;
-        end else if (tr.req_type == STOP) begin
-            vif.flr_rqst[tr.lift_id] = (1 << (tr.floor-1));
-            repeat(5) @(posedge vif.clk);
-            vif.flr_rqst[tr.lift_id] = 0;
-        end
+    task send_sb_hall_request(int lift_id, int floor, lift_request req_type);
+        lift_controller_seq_item tr = new();
+        tr.floor = floor;
+        tr.dir = (req_type == UP) ? DIR_UP : DIR_DN;
+        tr.door = DOOR_OPEN;
+        lift_sb_ports[lift_id].write(tr);
+        #1;
+        tr = new();
+        tr.floor = floor;
+        tr.dir = (req_type == UP) ? DIR_UP : DIR_DN;
+        tr.door = DOOR_CLOSED;
+        lift_sb_ports[lift_id].write(tr);
     endtask
 
-    // Utility to send expected transactions to the appropriate lift scoreboard
-    task send_to_sb(int lift_id, int floor, lift_request req_type);
-        lift_controller_seq_item tr_to_sb = new();
-        if (req_type == STOP) begin
-            tr_to_sb.door = DOOR_OPEN;
-            tr_to_sb.floor = floor;
-            tr_to_sb.dir = DIR_DN; // ignored for STOP
-            lift_sb_ports[lift_id].write(tr_to_sb);
-        end else begin
-            // UP/DN requests expect a stop (OPEN) and then a departure (CLOSED) in that direction
-            tr_to_sb.door = DOOR_OPEN;
-            tr_to_sb.floor = floor;
-            tr_to_sb.dir = (req_type == UP) ? DIR_UP : DIR_DN;
-            lift_sb_ports[lift_id].write(tr_to_sb);
-
-            // Minimal delay to ensure sequential processing in scoreboard
-            #1;
-
-            tr_to_sb = new();
-            tr_to_sb.door = DOOR_CLOSED;
-            tr_to_sb.floor = floor;
-            tr_to_sb.dir = (req_type == UP) ? DIR_UP : DIR_DN;
-            lift_sb_ports[lift_id].write(tr_to_sb);
-        end
+    task send_sb_car_request(int lift_id, int floor);
+        lift_controller_seq_item tr = new();
+        tr.floor = floor;
+        tr.dir = DIR_DN; // Ignored for STOP
+        tr.door = DOOR_OPEN;
+        lift_sb_ports[lift_id].write(tr);
     endtask
 
 endclass

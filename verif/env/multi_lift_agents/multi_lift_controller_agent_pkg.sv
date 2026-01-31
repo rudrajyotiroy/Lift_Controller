@@ -6,6 +6,9 @@ package multi_lift_controller_agent_pkg;
     `include "uvm_macros.svh"
     import lift_controller_agent_pkg::*;
 
+    `include "user_panel.svh"
+    `include "person_journey_item.sv"
+    `include "person_sequence.sv"
     `include "multi_lift_controller_cfg.sv"
     `include "multi_lift_controller_driver.sv"
     `include "multi_lift_controller_monitor.sv"

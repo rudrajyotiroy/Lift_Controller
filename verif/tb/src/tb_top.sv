@@ -74,9 +74,17 @@ module lift_controller_tb_top;
 
     /********************* DUT and Emulator (Wrapped) Instantation **********************************/
     multi_lift_controller_if #(N_FLOORS, N_LIFTS) top_if (clk, reset);
-    multi_lift_controller_wrapper #(N_FLOORS, N_LIFTS) u_lift (top_if);
 
-    // Individual interfaces for monitoring
+    logic [N_FLOORS-1:0] top_flr_rqst [N_LIFTS];
+    logic [N_LIFTS-1:0] top_force_open;
+
+    multi_lift_controller_wrapper #(N_FLOORS, N_LIFTS) u_lift (
+        .top_if(top_if),
+        .flr_rqst(top_flr_rqst),
+        .force_open(top_force_open)
+    );
+
+    // Individual interfaces for monitoring and direct driving
     lift_controller_if #(N_FLOORS) lift_vif [N_LIFTS] (clk, reset);
 
     genvar i;
@@ -88,8 +96,10 @@ module lift_controller_tb_top;
             assign lift_vif[i].door_open = u_lift.int_if[i].door_open;
             assign lift_vif[i].up_rqst = u_lift.int_if[i].up_rqst;
             assign lift_vif[i].dn_rqst = u_lift.int_if[i].dn_rqst;
-            assign lift_vif[i].flr_rqst = u_lift.int_if[i].flr_rqst;
-            assign lift_vif[i].force_open = u_lift.int_if[i].force_open;
+
+            // Connect direct drive signals from TB to RTL ports
+            assign top_flr_rqst[i] = lift_vif[i].flr_rqst;
+            assign top_force_open[i] = lift_vif[i].force_open;
 
             `ifdef DEBUG_INTERFACE
             assign lift_vif[i].up_rqst_status = u_lift.int_if[i].up_rqst_status;

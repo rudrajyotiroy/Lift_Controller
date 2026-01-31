@@ -8,11 +8,9 @@ package multi_lift_controller_test_pkg;
 
     import lift_controller_agent_pkg::*;
     import lift_controller_env_pkg::*;
-    import lift_controller_seq_pkg::*;
     import multi_lift_controller_agent_pkg::*;
     import multi_lift_controller_env_pkg::*;
 
-    `include "multi_lift_base_seq.sv"
     `include "multi_lift_traffic_sequence.sv"
     `include "multi_lift_base_test.sv"
 

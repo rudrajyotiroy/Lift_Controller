@@ -13,8 +13,8 @@ module multi_lift_controller_arbiter #(parameter N_FLOORS=12, parameter N_LIFTS 
             for (int i = 0; i < N_LIFTS; i++) last_floor[i] <= 1; // Default to floor 1
         end else begin
             for (int i = 0; i < N_LIFTS; i++) begin
-                if (top_if.floor_sense[i] != 0)
-                    last_floor[i] <= top_if.floor_sense[i];
+                if (int_if[i].floor_sense != 0)
+                    last_floor[i] <= int_if[i].floor_sense;
             end
         end
     end
@@ -62,10 +62,10 @@ module multi_lift_controller_arbiter #(parameter N_FLOORS=12, parameter N_LIFTS 
                     bit eligible = 0;
 
                     // Nearest elevator moving in that direction and yet to reach that floor
-                    if (top_if.motion[i] && top_if.direction[i] && cur_f <= f) begin
+                    if (int_if[i].motion && int_if[i].direction && cur_f <= f) begin
                         dist = f - cur_f;
                         eligible = 1;
-                    end else if (!top_if.motion[i]) begin
+                    end else if (!int_if[i].motion) begin
                         dist = (f > cur_f) ? (f - cur_f) : (cur_f - f);
                         dist = dist + N_FLOORS; // Penalty for idle
                         eligible = 1;
@@ -89,10 +89,10 @@ module multi_lift_controller_arbiter #(parameter N_FLOORS=12, parameter N_LIFTS 
                     int dist;
                     bit eligible = 0;
 
-                    if (top_if.motion[i] && !top_if.direction[i] && cur_f >= f) begin
+                    if (int_if[i].motion && !int_if[i].direction && cur_f >= f) begin
                         dist = cur_f - f;
                         eligible = 1;
-                    end else if (!top_if.motion[i]) begin
+                    end else if (!int_if[i].motion) begin
                         dist = (f > cur_f) ? (f - cur_f) : (cur_f - f);
                         dist = dist + N_FLOORS;
                         eligible = 1;
